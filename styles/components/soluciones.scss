@@ -1,0 +1,213 @@
+.soluciones {
+  position: relative;
+  min-height: calc(100vh - #{$headerHeight});
+  &__title {
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem 0;
+    & h1, & span {
+      font-family: $gilroyBold;
+      font-weight: bolder;
+      display: block;
+      margin: 0;
+    }
+  }
+  &__image {
+    width: min-content;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    & img {
+      max-width: 100%;
+    }
+  }
+
+  &__list {
+    max-width: 21.2rem;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-items ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    &-items ul li {
+      display: grid;
+      grid-template-columns: min-content 23rem;
+      column-gap: .5rem;
+      counter-increment: list;
+      margin: 1em 0;
+      &::before {
+        content: counter(list);
+        background-image: url("/img/check-celeste.png");
+        background-repeat: no-repeat;
+        background-size: .8em;
+        background-position: center 5px  ;
+        width: .8em;
+        height: 2em;
+        color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    &-title {
+      align-self: flex-start;
+      font-family: $gilroyBold;
+    }
+  }
+
+  &__button-agendar {
+    text-align: center;
+    color: #ffffff;
+    background-color: $skyblue;
+    font-family: $gilroyBold;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    font-size: 1.2rem;
+    max-width: 80%;
+    min-width: fit-content;
+    &:hover {
+      background-color: $skyblueHover;
+    }
+  }
+  &__arrow {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    background-color: $gray;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    color: #ffffff;
+    font-size: 2.5rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    &:hover {
+      background-color: $grayText;
+    }
+    & i {
+      position: relative;
+      bottom: 2%;
+    }
+    &--right {
+      left: 2%;
+      & i {
+        right: 2%;
+      }
+    }
+    &--left {
+      right: 2%;
+      & i {
+        left: 2%;
+      }
+    }
+  }
+
+  &--purple {
+    background-color: $softGray;
+    & .soluciones__title span {
+      color: $purple;
+    }
+
+    & .soluciones__button-agendar {
+      background-color: $purple;
+      &:hover {
+        background-color: $purpleHover;
+      }
+    }
+    & .soluciones {
+      &__list ul li {
+        &::before {
+          background-image: url("/img/check-morado.png");
+        }
+      }
+    }
+  }
+  &--skyblue {
+    & .soluciones__title span {
+        color: $skyblue;
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-laptop) {
+    min-height: 0;
+    padding: 3rem 0;
+    &__image {
+      max-width: 50%;
+    }
+    &__arrow {
+      &--right {
+          top: 25%;
+          bottom: initial;
+      }
+      &--left {
+          top: 25%;
+          bottom: initial;
+      }
+    }
+    &__list {
+      &-title {
+        align-self: center;
+      }
+    }
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    &__image {
+      max-width: 70%;
+      width: 70%;
+    }
+    &__arrow {
+      &--right {
+          top: 28%;
+      }
+      &--left {
+          top: 28%;
+      }
+    }
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    &__image {
+      max-width: 90%;
+      width: 90%;
+    }
+    &__list {
+      &-items ul li {
+        grid-template-columns: min-content 18rem;
+      }
+    }
+    &__arrow {
+      height: 2rem;
+      width: 2rem;
+      font-size: 1.5rem;
+      &--right {
+          top: 30%;
+      }
+      &--left {
+          top: 30%;
+      }
+    }
+    &__title {
+      font-size: 1.1rem;
+      & h1 {
+        max-width: 95%;
+        margin: auto;
+      }
+    }
+    &__button-agendar {
+      font-size: 1rem;
+    }
+  }
+}

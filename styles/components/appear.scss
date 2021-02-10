@@ -1,0 +1,39 @@
+@keyframes appear-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes appear-right {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.appear {
+  &_left {
+    opacity: 0;
+    &-animade {
+      animation: appear-left ease 2s;
+      opacity: 100%;
+    }
+  }
+  &_right {
+    opacity: 0;
+    &-animade {
+      animation: appear-right ease 2s;
+      opacity: 100%;
+    }
+  }
+  &--hidden {
+    opacity: 0;
+  }
+}

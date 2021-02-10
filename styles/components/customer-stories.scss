@@ -1,0 +1,213 @@
+.customer-stories {
+  position: relative;
+  min-height: calc(100vh - #{$headerHeight});
+  &__title {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    & h1, & span {
+      font-family: $gilroyBold;
+      font-weight: bolder;
+      display: block;
+    }
+  }
+
+  &__content {
+    align-self: flex-start;
+    max-width: 80%;
+    font-family: $gilroyBold;
+    &-title {
+      font-size: 1.7rem;
+      margin: 2rem 0;
+      & h2 {
+        position: relative;
+        display: inline;
+        &::before {
+          content: "\"";
+          font-style: italic;
+          position: absolute;
+          left: -1.8rem;
+        }
+        &::after {
+          content: "\"";
+          font-style: italic;
+          right: -0rem;
+        }
+      }
+    }
+    &-data {
+      & h2 {
+        font-size: 3rem;
+        margin: 0;
+      }
+      & h3 {
+        margin: 0;
+        font-family: $gilroy;
+        font-weight: 0;
+      }
+    }
+  }
+
+
+  &--purple {
+    background-color: $softGray;
+    & .customer-stories__title span {
+      color: $purple;
+    }
+
+    & .customer-stories__button-agendar {
+      background-color: $purple;
+      &:hover {
+        background-color: $purpleHover;
+      }
+    }
+    & .customer-stories {
+      &__list ul li {
+        &::before {
+          background-image: url("/img/check-morado.png");
+        }
+      }
+    }
+  }
+  &--skyblue {
+    & .customer-stories__title span {
+        color: $skyblue;
+    }
+  }
+  &__picture {
+    min-width: 21rem;
+    min-height: 21rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    & img {
+      width: 17rem;
+      height: 17rem;
+    }
+    &:hover::before {
+      transform: rotate(60deg) scale(1.15);
+    }
+    &::before {
+      transition-duration: 1000ms;
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 21rem;
+      height: 21rem;
+      background: url("/img/circulo-cliente.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 21rem;
+    }
+  }
+
+  &__slider {
+    margin: 0 auto;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-control {
+      color: $purple;
+      font-size: .8em;
+      width: .5rem;
+      height: .5rem;
+      border-color: $purple;
+      border-width: .1rem;
+      border-style: solid;
+      border-radius: 50%;
+      margin: .5em;
+      &-active {
+        background-color: $purple;
+      }
+      &-box {
+        grid-column: span 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: $purple;
+      }
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-desktop) {
+    &__content {
+      &-title {
+        & h2 {
+          font-size: 2.2rem;
+        }
+      }
+      &-data {
+        & h2 {
+          font-size: 2rem;
+        }
+        & h3 {
+          font-size: 1rem;
+        }
+      }
+    }
+    &__picture {
+      min-width: 17rem;
+      min-height: 17rem;
+      & img {
+        width: 14rem;
+        height: 14rem;
+      }
+      &::before {
+        width: 17rem;
+        height: 17rem;
+        background-size: 17rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-laptop) {
+    min-height: 0;
+    justify-content: center;
+    &__content {
+      align-self: center;
+      max-width: 70%;
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-mobile){
+    &__content {
+        max-width: 70%;
+        text-align: center;
+      &-title {
+        & h2 {
+          font-size: 1.6rem;
+        }
+      }
+      &-data {
+        & h2 {
+          font-size: 2rem;
+        }
+      }
+    }
+    &__picture {
+      min-width: 18rem;
+      min-height: 18rem;
+      & img {
+        width: 15rem;
+        height: 15rem;
+      }
+      &::before {
+        background-size: 18rem;
+        background-position: center;
+        width: 18rem;
+        height: 18rem;
+      }
+    }
+  }
+}

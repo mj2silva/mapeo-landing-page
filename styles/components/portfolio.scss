@@ -1,0 +1,136 @@
+.portfolio {
+  min-height: calc(100vh - #{$headerHeight});
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  &__title {
+    min-height: 20vh;
+    box-sizing:content-box;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    font-family: $gilroyBold;
+    & span {
+      color: $skyblue;
+    }
+    & h1, & span {
+      margin: 0;
+      display: block;
+    }
+  }
+  &__list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  &__item {
+    height:initial;
+    font-family: $gilroyBold;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+    object-fit: fill;
+    &:hover {
+      transition-duration: 500ms;
+      transform: scale(1.1);
+      z-index: 10;
+    }
+    &:hover &-gradient::after {
+      background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,87,151,0) 40%);
+    }
+    &-gradient {
+      background: $darkblueGradient;
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &-gradient::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      background: $darkblueGradient;
+      transition-duration: 500ms;
+
+    }
+    & img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+    &-title {
+      z-index: 9;
+      color: #ffffff;
+      font-size: 2rem;
+      margin: -80px 0 0 1rem;
+    }
+    &-description {
+      z-index: 9;
+      color: $skyblue;
+      margin: 0 0 0 1rem;
+    }
+
+  }
+  &__footer {
+    width: 100%;
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &__link {
+    text-align: center;
+    min-width: 10%;
+    color: #ffffff;
+    background-color: $skyblue;
+    padding: 1rem;
+    font-family: $gilroyBold;
+    &:hover {
+      background-color: $skyblueHover;
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-laptop){
+    &__list {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+  }
+  @media screen and (max-width: $breakpoint-tablet){
+    &__title {
+      font-size: 1.1rem;
+      margin: 1rem auto;
+    }
+    &__title {
+      min-height: 8rem;
+    }
+    &__item {
+      &-title {
+        font-size: 1rem;
+      }
+    }
+  }
+  @media screen and (max-width: $breakpoint-mobile){
+    &__item {
+      &-title {
+        font-size: 1rem;
+      }
+      &-description {
+        font-size: .8rem;
+      }
+    }
+  }
+}

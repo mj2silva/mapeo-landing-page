@@ -41,5 +41,10 @@ module.exports = {
         allowConciseArrowFunctionExpressionsStartingWithVoid: true,
       },
     ],
+    'import/extensions': [
+      'error',
+      'never',
+    ],
+    'import/no-unresolved': 0,
   },
 };

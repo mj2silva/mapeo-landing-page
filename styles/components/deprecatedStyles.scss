@@ -1,0 +1,48 @@
+.presentation {
+  &__slider {
+    margin: 0 auto;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-control {
+      color: $skyblue;
+      font-size: .8em;
+      width: .5rem;
+      height: .5rem;
+      border-color: $skyblue;
+      border-width: .1rem;
+      border-style: solid;
+      border-radius: 50%;
+      margin: .5rem .5rem .5rem .5rem;
+      &-active {
+        background-color: $skyblue;
+      }
+      &-box {
+        display: flex;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: $skyblue;
+      }
+    }
+  }
+  &__picture img {
+    max-width: 35rem;
+    @media screen and (max-width: $breakpoint-desktop){
+      // font-size: 2rem;
+      max-width: 25rem;
+    }
+    @media screen and (max-width: $breakpoint-laptop){
+      // font-size: 2rem;
+      max-width: 30rem;
+    }
+    @media screen and (max-width: $breakpoint-tablet){
+      // font-size: 2rem;
+      max-width: 28rem;
+    }
+    @media screen and (max-width: $breakpoint-mobile){
+      max-width: 18rem;
+    }
+  }
+}

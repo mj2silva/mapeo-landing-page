@@ -1,0 +1,74 @@
+@import "./common/common.scss";
+
+// Commons
+@import "components/common/button.scss";
+@import "components/slider.scss";
+@import "./components/section.scss";
+
+// Components
+
+// Landing
+@import "components/header.scss";
+@import "components/presentation.scss";
+@import "components/about-us.scss";
+@import "components/callToAction.scss";
+@import "components/soluciones.scss";
+@import "components/portfolio.scss";
+@import "components/customer-stories.scss";
+@import "components/schedule-meeting.scss";
+@import "components/footer.scss";
+
+// Portafolio
+@import "components/portfolio/items.scss";
+@import "components/portfolio/head.scss";
+
+// Blog
+@import "components/blog/entries-list.scss";
+@import "components/blog/post.scss";
+
+// Animations
+@import "components/mapeo-circle.scss";
+@import "components/appear.scss";
+
+// Librerias externas
+@import "./lib/calendly.scss";
+
+body {
+  background-color: #ffffff;
+  color: $darkBlack;
+  font-family: $grotesk;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.target {
+  position: absolute;
+  height: $headerHeight;
+  width: 100%;
+  top: -$headerHeight;
+  margin: 0;
+  z-index: -1;
+  @media screen and (max-width: $breakpoint-mobile) {
+    top: 0;
+  }
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance:none;
+}
+
+.demo-bg {
+  background-color: $darkBlue;
+  color: $white;
+}
+
+.demo-bg-2 {
+  background-color: $skyblue;
+  color: $white
+}
