@@ -37,7 +37,7 @@ const SliderControls : FC<Props> = ({ delay } : Props) => {
     }
   }, [currentPage, totalPages, handleNext, activeTimeout, delay]);
 
-  const handleClick = () => {
+  const handleClick = () : void => {
     clearTimeout(controlTimeout);
     setActiveTimeout(false);
   };
