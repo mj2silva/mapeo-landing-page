@@ -1,7 +1,7 @@
 @keyframes appear-left {
   from {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translateX(-10%);
   }
   to {
     opacity: 1;
@@ -11,7 +11,7 @@
 @keyframes appear-right {
   from {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(10%);
   }
   to {
     opacity: 1;
@@ -19,6 +19,7 @@
 }
 
 .appear {
+  overflow: hidden;
   &_left {
     opacity: 0;
     &-animade {

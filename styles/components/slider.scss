@@ -1,3 +1,24 @@
+@keyframes sliderIn {
+  0% {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+@keyframes sliderOut {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+}
+
 .slider {
   display: flex;
   flex-direction: column;
@@ -15,7 +36,10 @@
     border-width: .1rem;
     border-style: solid;
     border-radius: 50%;
-    margin: .5rem .5rem .5rem .5rem;
+    display: block;
+    margin: .5rem;
+    padding: .25rem;
+    background-color: transparent;
     &--active {
       background-color: $skyblue;
     }
@@ -23,19 +47,36 @@
       cursor: pointer;
       background-color: $skyblue;
     }
+    &:focus {
+      outline: none;
+    }
   }
   &__container {
     padding: 0;
+    position: relative;
   }
   &__picture {
     max-width: 100%;
     display: none;
+    // animation: sliderIn ease 1s;
+    overflow: hidden;
     & img {
       width: 100%;
       height: auto;
     }
     &--active {
       display: block;
+      animation: sliderIn ease 1s;
+    }
+    &--exiting {
+      animation: sliderOut ease 1s;
+      opacity: 0;
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      overflow: hidden;
     }
   }
 }
