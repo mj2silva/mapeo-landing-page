@@ -4,6 +4,7 @@ import AboutUs from '../components/AboutUs';
 import CallToAction from '../components/CallToAction';
 import Presentation from '../components/Presentation';
 import SolutionsMarketing from '../components/SolutionsMarketing';
+import SolutionsPersons from '../components/SolutionsPersons';
 
 export default function Home() : ReactElement {
   return (
@@ -17,6 +18,7 @@ export default function Home() : ReactElement {
       <AboutUs />
       <CallToAction />
       <SolutionsMarketing />
+      <SolutionsPersons />
     </>
   );
 }

@@ -16,7 +16,7 @@ const SliderImage : FC<SliderImageProps> = (props : SliderImageProps) => {
   }, [currentPage, id]);
   return (
     <li key={id || src} className={`slider__picture ${className}`}>
-      <Image className="slider__picture" src={src} alt={alt} width={width} height={height} />
+      <Image src={src} alt={alt} width={width} height={height} />
     </li>
   );
 };

@@ -34,20 +34,20 @@ const sliderContent : SectionOfSliderProps[] = [
   },
 ];
 
-const SolutionsMarketing : FC = () => (
+const SolutionsPersons : FC = () => (
   <SliderWithSection
     sliderContentList={sliderContent}
-    className="soluciones soluciones--purple"
+    className="soluciones soluciones--skyblue"
     titleNode={(
       <div className="soluciones__title">
         <h1>
           Soluciones para conquistar
           {' '}
-          <span>&#183; a tus colaboradores &#183;</span>
+          <span>&#183; a tus clientes &#183;</span>
         </h1>
       </div>
     )}
   />
 );
 
-export default SolutionsMarketing;
+export default SolutionsPersons;

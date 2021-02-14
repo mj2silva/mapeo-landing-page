@@ -1,13 +1,22 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import SliderProvider from '../components/SliderContext';
-import { SliderProps } from '../lib/types';
-import SliderWithSectionComponent from './components/SliderWithSectionComponent';
+import SliderWithSectionComponent, { SectionOfSliderProps } from './components/SliderWithSectionComponent';
 
-const SliderWithSection : FC<SliderProps> = (props: SliderProps) => {
-  const { className, list } = props;
+export type SliderWithSectionProps = {
+  className: string,
+  sliderContentList: SectionOfSliderProps[],
+  titleNode: ReactNode
+}
+
+const SliderWithSection : FC<SliderWithSectionProps> = (props: SliderWithSectionProps) => {
+  const { className, sliderContentList, titleNode } = props;
   return (
     <SliderProvider delay={3000} transitionAuto>
-      <SliderWithSectionComponent />
+      <SliderWithSectionComponent
+        className={className}
+        sliderContent={sliderContentList}
+        title={titleNode}
+      />
     </SliderProvider>
   );
 };
