@@ -21,6 +21,7 @@ export type SliderWithSectionProps = {
   sliderContent: SectionOfSliderProps[],
   className: string,
   title: ReactNode,
+  targetId?: string,
 }
 
 const renderList = (
@@ -65,7 +66,7 @@ const getColumnsFromContent = (
 
 const SliderWithSectionComponent : FC<SliderWithSectionProps> = (
   {
-    className, title, sliderContent,
+    className, title, sliderContent, targetId,
   }: SliderWithSectionProps,
 ) => {
   const { currentPage, setTotalPages } = useSlider();
@@ -84,6 +85,7 @@ const SliderWithSectionComponent : FC<SliderWithSectionProps> = (
       className={className}
       gridType={GridType.reversableWithTitle}
       title={title}
+      targetId={targetId}
       firstColumn={(
         renderList(getColumnsFromContent(sliderContent))
     )}

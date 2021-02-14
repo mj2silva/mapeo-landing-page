@@ -39,7 +39,7 @@ const SolutionsPersons : FC = () => (
     sliderContentList={sliderContent}
     className="soluciones soluciones--skyblue"
     titleNode={(
-      <div className="soluciones__title">
+      <div className="soluciones__title appear_right">
         <h1>
           Soluciones para conquistar
           {' '}
@@ -47,6 +47,7 @@ const SolutionsPersons : FC = () => (
         </h1>
       </div>
     )}
+    targetId="marketing"
   />
 );
 

@@ -9,7 +9,7 @@ type Props = {
 const Layout : FC<Props> = ({ children } : Props) => (
   <>
     <Header />
-    <main>
+    <main id="app">
       { children }
     </main>
     <Footer />

@@ -39,7 +39,7 @@ const SolutionsMarketing : FC = () => (
     sliderContentList={sliderContent}
     className="soluciones soluciones--purple"
     titleNode={(
-      <div className="soluciones__title">
+      <div className="soluciones__title appear_left">
         <h1>
           Soluciones para conquistar
           {' '}
@@ -47,6 +47,7 @@ const SolutionsMarketing : FC = () => (
         </h1>
       </div>
     )}
+    targetId="personas"
   />
 );
 

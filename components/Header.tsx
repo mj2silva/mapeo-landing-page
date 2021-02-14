@@ -8,9 +8,9 @@ import { faChevronDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 import CustomLink from './common/Link';
 
 const Header : FC = () => (
-  <header className="header">
+  <header className="header" id="header">
     <div className="header__logo">
-      <CustomLink href="/">
+      <CustomLink href="/#">
         <img src="/img/logo-mapeo.svg" alt="Logo mapeo" width="92" />
       </CustomLink>
     </div>

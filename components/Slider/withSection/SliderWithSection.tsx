@@ -5,17 +5,21 @@ import SliderWithSectionComponent, { SectionOfSliderProps } from './components/S
 export type SliderWithSectionProps = {
   className: string,
   sliderContentList: SectionOfSliderProps[],
-  titleNode: ReactNode
+  titleNode: ReactNode,
+  targetId?: string,
 }
 
 const SliderWithSection : FC<SliderWithSectionProps> = (props: SliderWithSectionProps) => {
-  const { className, sliderContentList, titleNode } = props;
+  const {
+    className, sliderContentList, titleNode, targetId,
+  } = props;
   return (
     <SliderProvider delay={3000} transitionAuto>
       <SliderWithSectionComponent
         className={className}
         sliderContent={sliderContentList}
         title={titleNode}
+        targetId={targetId}
       />
     </SliderProvider>
   );

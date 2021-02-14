@@ -6,6 +6,7 @@
   justify-content: center;
   background-color: $darkBlue;
   color: #ffffff;
+  overflow: hidden;
   min-height: calc(32rem - #{$headerHeight});
   background-image: url("/img/circulo-lineas-abajo.png"),
     url("/img/circulo-lineas-arriba.png"),

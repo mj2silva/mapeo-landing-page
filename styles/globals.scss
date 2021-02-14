@@ -39,6 +39,7 @@ body {
   font-family: $grotesk;
   margin: 0;
   overflow-x: hidden;
+  width: 100vw;
 }
 
 a {
@@ -51,6 +52,10 @@ button {
   &:focus {
     outline: none;
   }
+}
+
+.ReactModal__Body--open {
+  overflow-y: hidden;
 }
 
 .target {
