@@ -85,6 +85,8 @@
     justify-content: center;
     position: relative;
     & img {
+      overflow: hidden;
+      border-radius: 50%;
       width: 17rem;
       height: 17rem;
     }
@@ -122,6 +124,8 @@
       border-style: solid;
       border-radius: 50%;
       margin: .5em;
+      padding: 0.2rem;
+      background-color: $white;
       &-active {
         background-color: $purple;
       }
@@ -161,6 +165,7 @@
       & img {
         width: 14rem;
         height: 14rem;
+        border-radius: 50%;
       }
       &::before {
         width: 17rem;
@@ -177,6 +182,7 @@
       align-self: center;
       max-width: 70%;
       text-align: center;
+      margin: 0 auto;
     }
   }
 

@@ -13,7 +13,7 @@ const defaultProps : Partial<SliderControlProps> = {
 };
 
 const SliderControl:FC<SliderControlProps> = ({ id, onClick }:SliderControlProps) => {
-  const [className, setClassName] = useState(null);
+  const [className, setClassName] = useState('');
   const { currentPage, goToPage, cancelInterval } = useSlider();
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) : void => {
@@ -23,7 +23,7 @@ const SliderControl:FC<SliderControlProps> = ({ id, onClick }:SliderControlProps
   };
   useEffect(() => {
     if (currentPage === id) setClassName('slider__control--active');
-    else setClassName(null);
+    else setClassName('');
   }, [currentPage, id]);
 
   return <button onClick={handleClick} type="button" className={`slider__control ${className}`} />;

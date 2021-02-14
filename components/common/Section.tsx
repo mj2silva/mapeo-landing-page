@@ -73,7 +73,7 @@ const Section : FC<SectionProps> = (props : SectionProps) => {
         { secondColumn }
       </div>
       { (targetId) ? <aside className="target" id={targetId} /> : null}
-      { (sliderControls) }
+      { sliderControls }
     </section>
   );
 };
