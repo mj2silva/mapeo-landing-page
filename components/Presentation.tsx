@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Slider from './Slider';
-import Section, { GridType } from './Section';
+import Section, { GridType } from './common/Section';
 import { SliderImageProps } from './Slider/lib/types';
 
 type Props = {

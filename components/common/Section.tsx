@@ -4,7 +4,7 @@ enum SectionClassName {
   section = 'section',
   sectionWithTitle = 'section--with-title',
   sectionReversable = 'section--reversable',
-  sectionReversableWithTitle = 'section--reversable-with-title',
+  sectionReversableWithTitle = 'section--with-title section--reversable-with-title',
 }
 
 enum ColumnClassName {
@@ -19,20 +19,24 @@ export enum GridType {
   reversableWithTitle = 'reversable-with-title',
 }
 
-type Props = {
+export type SectionProps = {
   gridType?: GridType,
   title?: ReactNode,
   firstColumn?: ReactNode,
   secondColumn?: ReactNode,
   className?: string,
+  targetId?: string,
+  sliderControls?: ReactNode
 }
 
-const defaultProps : Partial<Props> = {
+const defaultProps : Partial<SectionProps> = {
   gridType: GridType.normal,
   title: null,
   firstColumn: null,
   secondColumn: null,
   className: null,
+  targetId: null,
+  sliderControls: null,
 };
 
 const getClassName = (gridType : GridType) : SectionClassName => {
@@ -50,14 +54,14 @@ const getClassName = (gridType : GridType) : SectionClassName => {
   }
 };
 
-const Section : FC<Props> = (props : Props) => {
+const Section : FC<SectionProps> = (props : SectionProps) => {
   const {
-    gridType, title, firstColumn, secondColumn, className,
+    gridType, title, firstColumn, secondColumn, className, targetId, sliderControls,
   } = props;
   const sectionClassName = getClassName(gridType);
   return (
     <section className={`${SectionClassName.section} ${sectionClassName} ${className}`}>
-      {(gridType === GridType.withTitle) ? (
+      {(gridType === GridType.withTitle || gridType === GridType.reversableWithTitle) ? (
         <div className={ColumnClassName.columnTitle}>
           { title }
         </div>
@@ -68,6 +72,8 @@ const Section : FC<Props> = (props : Props) => {
       <div className={ColumnClassName.column}>
         { secondColumn }
       </div>
+      { (targetId) ? <aside className="target" id={targetId} /> : null}
+      { (sliderControls) }
     </section>
   );
 };

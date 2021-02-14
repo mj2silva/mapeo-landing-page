@@ -3,6 +3,7 @@ import { ReactElement } from 'react';
 import AboutUs from '../components/AboutUs';
 import CallToAction from '../components/CallToAction';
 import Presentation from '../components/Presentation';
+import SolutionsMarketing from '../components/SolutionsMarketing';
 
 export default function Home() : ReactElement {
   return (
@@ -15,6 +16,7 @@ export default function Home() : ReactElement {
       <Presentation />
       <AboutUs />
       <CallToAction />
+      <SolutionsMarketing />
     </>
   );
 }

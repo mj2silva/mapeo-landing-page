@@ -5,7 +5,7 @@ import SliderControls from './SliderControls';
 import SliderImages from './SliderImages';
 
 const SliderComponent : FC<SliderProps> = (props : SliderProps) => {
-  const { imageList, className, delay } = props;
+  const { imageList, className } = props;
   const { setTotalPages } = useSlider();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const SliderComponent : FC<SliderProps> = (props : SliderProps) => {
     <div className={`slider ${className}`}>
       <SliderImages imageList={imageList} />
       <div id="controlContainer" className="slider__control-box">
-        <SliderControls delay={delay} />
+        <SliderControls />
       </div>
     </div>
   );

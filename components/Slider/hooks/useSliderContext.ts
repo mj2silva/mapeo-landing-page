@@ -1,21 +1,57 @@
-import { useContext } from 'react';
-import { SliderContext } from '../components/SliderContext';
-import { SliderContextHookType, SliderContextType } from '../lib/types';
+import {
+  useCallback, useEffect, useState,
+} from 'react';
+import SliderHook from '../interfaces/SliderHook';
 
-const useSliderContext = () : SliderContextHookType => {
+const useSliderContext : SliderHook = (props) => {
   const {
-    currentPage,
-    setCurrentPage,
-    totalPages,
-    setTotalPages,
-  } = useContext<SliderContextType>(SliderContext);
+    transitionAuto,
+    delay,
+  } = props;
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const [currentInterval, setCurrentInterval] = useState(null);
+  const [isIntervalActive, setIsIntervalActive] = useState<boolean>(false);
 
   const goToPage = (page:number) : void => {
-    setCurrentPage(page);
+    if (page >= 0 && page < totalPages) setCurrentPage(page);
+    else throw Error('Page debe ser mayor que 0 y menor que el número total de páginas del slider');
   };
 
-  const goToNextPage = () : void => setCurrentPage(currentPage + 1);
-  const goToPrevPage = () : void => setCurrentPage(currentPage - 1);
+  const goToNextPage = useCallback(() : void => {
+    if (currentPage + 1 >= totalPages) setCurrentPage(0);
+    else setCurrentPage(currentPage + 1);
+  }, [currentPage, totalPages]);
+
+  const goToPrevPage = useCallback(() : void => {
+    if (currentPage - 1 < 0) setCurrentPage(totalPages - 1);
+    else setCurrentPage(currentPage - 1);
+  }, [currentPage, totalPages]);
+
+  useEffect(
+    () => {
+      if (transitionAuto && !isIntervalActive) {
+        if (delay > 0) {
+          const interval = setTimeout(() => {
+            goToNextPage();
+            setIsIntervalActive(false);
+          }, delay);
+          setCurrentInterval(interval);
+          setIsIntervalActive(true);
+        } else {
+          throw Error('El delay debe ser mayor de 0');
+        }
+      }
+    },
+    [transitionAuto, currentPage, goToNextPage, delay, isIntervalActive],
+  );
+
+  const cancelInterval = () : void => {
+    setIsIntervalActive(false);
+    clearInterval(currentInterval);
+  };
 
   return {
     goToPrevPage,
@@ -24,6 +60,7 @@ const useSliderContext = () : SliderContextHookType => {
     currentPage,
     totalPages,
     setTotalPages,
+    cancelInterval,
   };
 };
 

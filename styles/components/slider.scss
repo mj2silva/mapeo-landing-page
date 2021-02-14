@@ -14,7 +14,7 @@
     opacity: 1;
   }
   100% {
-    transform: translateX(20%);
+    transform: translateX(30%);
     opacity: 0;
   }
 }
@@ -65,16 +65,15 @@
       height: auto;
     }
     &--active {
-      display: block;
       animation: sliderIn ease 1s;
+      display: block;
+      opacity: 1;
     }
     &--exiting {
       animation: sliderOut ease 1s;
       opacity: 0;
-      display: block;
       position: absolute;
-      top: 0;
-      bottom: 0;
+      right: 100%;
       margin: auto;
       overflow: hidden;
     }

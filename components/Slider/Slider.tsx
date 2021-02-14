@@ -6,8 +6,8 @@ import { SliderProps } from './lib/types';
 const Slider : FC<SliderProps> = (props: SliderProps) => {
   const { className, imageList } = props;
   return (
-    <SliderProvider>
-      <SliderComponent className={className} imageList={imageList} delay={3000} />
+    <SliderProvider delay={3000} transitionAuto>
+      <SliderComponent className={className} imageList={imageList} />
     </SliderProvider>
   );
 };

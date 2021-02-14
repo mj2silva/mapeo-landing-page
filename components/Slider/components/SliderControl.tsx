@@ -1,18 +1,25 @@
-import { FC, useEffect, useState } from 'react';
+import {
+  FC, MouseEvent, useEffect, useState,
+} from 'react';
 import useSlider from '../hooks/useSlider';
 
 type SliderControlProps = {
   id: number,
-  onClick,
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void,
 }
+
+const defaultProps : Partial<SliderControlProps> = {
+  onClick: null,
+};
 
 const SliderControl:FC<SliderControlProps> = ({ id, onClick }:SliderControlProps) => {
   const [className, setClassName] = useState(null);
-  const { currentPage, handlePageChange } = useSlider();
+  const { currentPage, goToPage, cancelInterval } = useSlider();
 
-  const handleClick = (event) : void => {
-    onClick(event);
-    handlePageChange(id);
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) : void => {
+    if (onClick) onClick(event);
+    cancelInterval();
+    goToPage(id);
   };
   useEffect(() => {
     if (currentPage === id) setClassName('slider__control--active');
@@ -21,5 +28,7 @@ const SliderControl:FC<SliderControlProps> = ({ id, onClick }:SliderControlProps
 
   return <button onClick={handleClick} type="button" className={`slider__control ${className}`} />;
 };
+
+SliderControl.defaultProps = defaultProps;
 
 export default SliderControl;

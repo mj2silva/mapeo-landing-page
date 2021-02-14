@@ -1,30 +1,50 @@
 import {
-  createContext, FC, ReactNode, useState,
+  createContext, FC, ReactNode,
 } from 'react';
-import { SliderContextType } from '../lib/types';
+import useSliderContext from '../hooks/useSliderContext';
+import { SliderContextReturn } from '../interfaces/SliderHook';
 
-export const SliderContext = createContext<SliderContextType>(null);
+export const SliderContext = createContext<SliderContextReturn>(null);
 
 type Props = {
-  children: ReactNode
+  children: ReactNode,
+  delay?: number,
+  transitionAuto?: boolean,
 }
 
-const SliderProvider : FC<Props> = ({ children } : Props) => {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
+const defaultProps : Partial<Props> = {
+  delay: null,
+  transitionAuto: false,
+};
+
+const SliderProvider : FC<Props> = ({ children, delay, transitionAuto } : Props) => {
+  const {
+    goToPrevPage,
+    goToNextPage,
+    goToPage,
+    currentPage,
+    totalPages,
+    setTotalPages,
+    cancelInterval,
+  } = useSliderContext({ delay, transitionAuto });
 
   return (
     <SliderContext.Provider
       value={{
+        goToPrevPage,
+        goToNextPage,
+        goToPage,
         currentPage,
-        setCurrentPage,
         totalPages,
         setTotalPages,
+        cancelInterval,
       }}
     >
       { children }
     </SliderContext.Provider>
   );
 };
+
+SliderProvider.defaultProps = defaultProps;
 
 export default SliderProvider;

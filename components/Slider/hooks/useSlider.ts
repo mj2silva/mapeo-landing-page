@@ -1,7 +1,10 @@
-import { SliderHookType } from '../lib/types';
-import useSliderContext from './useSliderContext';
+import {
+  useContext,
+} from 'react';
+import { SliderContext } from '../components/SliderContext';
+import { SliderContextHookType } from '../lib/types';
 
-const useSlider = () : SliderHookType => {
+const useSlider = () : SliderContextHookType => {
   const {
     goToNextPage,
     goToPage,
@@ -9,29 +12,17 @@ const useSlider = () : SliderHookType => {
     currentPage,
     totalPages,
     setTotalPages,
-  } = useSliderContext();
-
-  const handleNext = () : void => {
-    if (currentPage + 1 >= totalPages) goToPage(0);
-    else goToNextPage();
-  };
-
-  const handlePrev = () : void => {
-    if (currentPage <= 0) goToPrevPage();
-    else goToPage(totalPages - 1);
-  };
-
-  const handlePageChange = (pageNumber: number) : void => {
-    if (pageNumber >= 0 && pageNumber < totalPages) goToPage(pageNumber);
-  };
+    cancelInterval,
+  } = useContext(SliderContext);
 
   return {
-    handleNext,
-    handlePageChange,
-    handlePrev,
-    setTotalPages,
-    totalPages,
+    goToNextPage,
+    goToPage,
+    goToPrevPage,
     currentPage,
+    totalPages,
+    setTotalPages,
+    cancelInterval,
   };
 };
 

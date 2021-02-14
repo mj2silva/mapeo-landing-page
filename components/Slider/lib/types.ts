@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { SectionProps } from '../../common/Section';
 
 export type SliderImageProps = {
   src: string,
@@ -14,6 +15,11 @@ export type SliderProps = {
   className?: string,
 }
 
+export type SliderWithSectionProps = {
+  list: SectionProps[],
+  className?: String,
+}
+
 export type SliderControlsProps = {
 
 }
@@ -23,6 +29,8 @@ export type SliderContextType = {
   setCurrentPage: Dispatch<SetStateAction<number>>,
   totalPages: number,
   setTotalPages: Dispatch<SetStateAction<number>>,
+  delay: number,
+  transitionAuto: boolean,
 }
 
 export type SliderContextHookType = {
@@ -32,6 +40,12 @@ export type SliderContextHookType = {
   goToPrevPage: () => void,
   goToNextPage: () => void,
   goToPage: (number: number) => void,
+  cancelInterval: () => void,
+}
+
+export type SliderControlsContextType = {
+  interval: ReturnType<typeof setTimeout>;
+  startInterval: () => void,
 }
 
 export type SliderHookType = {

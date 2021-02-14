@@ -16,4 +16,24 @@
       transform: rotate(360deg) scale(1.1);
     }
   }
+  & div {
+    margin: auto !important; // Dios perdóname T.T
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: visible !important; // Dios perdóname T.T
+  }
+  & div:nth-child(1) {
+    width: 75%;
+    height: 75%;
+  }
+  & div:nth-child(2) {
+    width: 50%;
+    height: 50%;
+  }
+  & div:nth-child(3) {
+    width: 20%;
+    height: 20%;
+  }
 }
