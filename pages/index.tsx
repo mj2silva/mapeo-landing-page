@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { ReactElement } from 'react';
 import AboutUs from '../components/AboutUs';
 import CallToAction from '../components/CallToAction';
+import Portfolio from '../components/Portfolio';
 import Presentation from '../components/Presentation';
 import SolutionsMarketing from '../components/SolutionsMarketing';
 import SolutionsPersons from '../components/SolutionsPersons';
@@ -19,6 +20,7 @@ export default function Home() : ReactElement {
       <CallToAction />
       <SolutionsMarketing />
       <SolutionsPersons />
+      <Portfolio items={[]} />
     </>
   );
 }
