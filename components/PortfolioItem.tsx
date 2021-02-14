@@ -1,4 +1,6 @@
-import { CSSProperties, FC, useState } from 'react';
+import {
+  CSSProperties, FC, MouseEvent, useState,
+} from 'react';
 import Modal from 'react-modal';
 
 export type PortfolioItemProps = {
@@ -35,12 +37,9 @@ const PortfolioItem : FC<PortfolioItemProps> = (props: PortfolioItemProps) => {
   const openModal = () : void => {
     setModalIsOpen(true);
   };
-  const closeModal = (e) : void => {
+  const closeModal = (e : MouseEvent<HTMLButtonElement>) : void => {
     e.stopPropagation();
     setModalIsOpen(false);
-    console.log('====================================');
-    console.log({ modalIsOpen });
-    console.log('====================================');
   };
   return (
     <button onClick={openModal} type="button" className="portfolio__item">

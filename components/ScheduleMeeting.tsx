@@ -3,7 +3,7 @@ import { openPopupWidget } from 'react-calendly';
 import Section, { GridType } from './common/Section';
 
 const ScheduleMeeting : FC = () => {
-  const onClick = () => {
+  const onClick = () : void => {
     openPopupWidget({
       url: 'https://calendly.com/manuelsilvag/reunion-de-ejemplo',
     });
