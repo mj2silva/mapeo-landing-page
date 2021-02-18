@@ -1,0 +1,70 @@
+.Modal {
+  position: absolute;
+  background-color: $white;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 1rem;
+  bottom: 1rem;
+  overflow: scroll;
+  padding: 3rem;
+  width: 90vw;
+  border: none;
+  &:focus {
+    border: none;
+    outline: none;
+  }
+  &__Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $whiteTransparent;
+  }
+  &__Body {
+    overflow-y: hidden;
+  }
+  @media screen and (max-width: $breakpoint-desktop) {
+    width: 70% !important;
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    padding: 1rem;
+    width: 90% !important;
+  }
+}
+
+.modal {
+  &__close-button {
+    background-color: transparent;
+    margin: 1rem;
+    position: absolute;
+    right: 2rem;
+    font-size: 2rem;
+    cursor: pointer;
+    &:hover {
+      color: $blueHover;
+    }
+  }
+  &__title {
+    margin: 3rem auto;
+    color: $blue;
+  }
+  &__image {
+    box-shadow: 0px 0px 13px 4px rgba(0,0,0,0.45);
+    max-width: 90%;
+    min-width: 70%;
+    min-height: 80vh;
+    position: relative;
+  }
+  @media screen and (max-width: $breakpoint-desktop) {
+    &__image {
+      width: 85%;
+    }
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    &__image {
+      width: 95%;
+    }
+  }
+}

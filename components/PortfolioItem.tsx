@@ -1,5 +1,8 @@
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import {
-  CSSProperties, FC, MouseEvent, useState,
+  FC, MouseEvent, useState,
 } from 'react';
 import Modal from 'react-modal';
 
@@ -24,12 +27,6 @@ const customStyles : Modal.Styles = {
   },
 };
 
-const buttonStyle : CSSProperties = {
-  backgroundColor: '#ffffff',
-  border: '1px solid navy',
-  margin: '5px',
-};
-
 const PortfolioItem : FC<PortfolioItemProps> = (props: PortfolioItemProps) => {
   const { name, description, imageUrl } = props;
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
@@ -52,10 +49,17 @@ const PortfolioItem : FC<PortfolioItemProps> = (props: PortfolioItemProps) => {
         isOpen={modalIsOpen}
         contentLabel={description}
         style={customStyles}
+        className="Modal"
+        overlayClassName="Modal__Overlay"
+        bodyOpenClassName="Modal__Body"
       >
-        <h2>{name}</h2>
-        <button style={buttonStyle} type="button" onClick={closeModal}> X </button>
-        <img src={imageUrl} alt="portafolio 1" width="700px" />
+        <h1 className="modal__title">{name}</h1>
+        <button className="modal__close-button" type="button" onClick={closeModal}>
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
+        <div className="modal__image">
+          <Image src={imageUrl} alt="portafolio 1" layout="fill" objectFit="contain" />
+        </div>
       </Modal>
     </button>
   );

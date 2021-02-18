@@ -21,6 +21,7 @@
 // Portafolio
 @import "components/portfolio/items.scss";
 @import "components/portfolio/head.scss";
+@import "./components/modal.scss";
 
 // Blog
 @import "components/blog/entries-list.scss";
@@ -40,6 +41,7 @@ body {
   margin: 0;
   overflow-x: hidden;
   width: 100vw;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -52,10 +54,6 @@ button {
   &:focus {
     outline: none;
   }
-}
-
-.ReactModal__Body--open {
-  overflow-y: hidden;
 }
 
 .target {

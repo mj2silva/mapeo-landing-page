@@ -17,9 +17,9 @@ const Portfolio : FC<PortfolioProps> = (props : PortfolioProps) => {
         </h1>
       </div>
       <div className="portfolio__list">
-        { items.map((item) => (
+        { items.map((item, index) => (
           <PortfolioItem
-            key={`pf-item-${item.name}`}
+            key={`pf-item-${item.name}-${index + 1}`}
             name={item.name}
             description={item.description}
             imageUrl={item.imageUrl}
@@ -27,7 +27,7 @@ const Portfolio : FC<PortfolioProps> = (props : PortfolioProps) => {
         )) }
       </div>
       <div className="portfolio__footer">
-        <a href="/portfolio" className="button portfolio__link">Ver mas proyectos</a>
+        <a href="/portafolio" className="button portfolio__link">Ver mas proyectos</a>
       </div>
     </section>
   );

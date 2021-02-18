@@ -1,4 +1,4 @@
-(function(){
+/* (function(){
   let menuInitialized = false;
   let openMenuIcon;
   let navMenu;
@@ -13,7 +13,7 @@
   }
   const openMenu = (menuElement) => {
     const menuDisplay = getComputedStyle(menuElement).display;
-    if (menuDisplay === 'none') {
+    if (menuDisplay === 'none') {5
       menuElement.style.display = 'block';
       menuElement.firstElementChild.classList.remove('navigation__list--hidden');
       menuElement.firstElementChild.classList.add('navigation__list--mobile');
@@ -44,3 +44,4 @@
     openDropDownButton.addEventListener('click', () => dropDownToggle(openDropDownButton));
   }
 })();
+ */

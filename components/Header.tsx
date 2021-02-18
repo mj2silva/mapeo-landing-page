@@ -1,11 +1,7 @@
 import { FC } from 'react';
 
-import { UilBars } from '@iconscout/react-unicons';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faTimes } from '@fortawesome/free-solid-svg-icons';
-
 import CustomLink from './common/Link';
+import HeaderMenu from './HeaderMenu';
 
 const Header : FC = () => (
   <header className="header" id="header">
@@ -14,9 +10,10 @@ const Header : FC = () => (
         <img src="/img/logo-mapeo.svg" alt="Logo mapeo" width="92" />
       </CustomLink>
     </div>
-    <div id="headerMenuIcon" className="header header__menu-icon">
+    <HeaderMenu />
+    {/* <div id="headerMenuIcon" className="header header__menu-icon">
       <i>
-        <UilBars />
+        <FontAwesomeIcon icon={faBars} />
       </i>
     </div>
     <div id="headerNavigation" className="navigation">
@@ -24,15 +21,25 @@ const Header : FC = () => (
         <div id="closeMenuNav" className="header__menu-close">
           <FontAwesomeIcon icon={faTimes} />
         </div>
-        <li id="navItem1" className="navigation__item navigation__item--orange">
+        <HeaderNavLink
+          tags={['nosotros']}
+          id="navItem2"
+          className="navigation__item navigation__item--orange"
+          activeClassName="navigation__item--active"
+        >
           <CustomLink href="/#nosotros">Nosotros</CustomLink>
-        </li>
+        </HeaderNavLink>
         <div className="navigation__dropdown">
-          <li id="navItem2" className="navigation__item navigation__item--purple">
+          <HeaderNavLink
+            tags={['soluciones', 'marketing', 'personas']}
+            id="navItem2"
+            className="navigation__item navigation__item--purple"
+            activeClassName="navigation__item--active"
+          >
             Soluciones
             {'  '}
             <FontAwesomeIcon icon={faChevronDown} />
-          </li>
+          </HeaderNavLink>
           <ul className="navigation__dropdown-list">
             <li className="navigation__dropdown-item">
               <CustomLink href="/#marketing">Marketing</CustomLink>
@@ -42,17 +49,33 @@ const Header : FC = () => (
             </li>
           </ul>
         </div>
-        <li id="navItem3" className="navigation__item navigation__item--skyblue">
+        <HeaderNavLink
+          tags={['portafolio']}
+          id="navItem3"
+          className="navigation__item navigation__item--skyblue"
+          activeClassName="navigation__item--active"
+        >
           <CustomLink href="/portafolio">Portafolio</CustomLink>
-        </li>
-        <li id="navItem4" className="navigation__item navigation__item--yellow">
+        </HeaderNavLink>
+        <HeaderNavLink
+          tags={['blog']}
+          id="navItem4"
+          className="navigation__item navigation__item--yellow"
+          activeClassName="navigation__item--active"
+        >
           <CustomLink href="/blog">Blog</CustomLink>
-        </li>
-        <li id="navItem5" className="navigation__item navigation__item--violet">
+        </HeaderNavLink>
+        <HeaderNavLink
+          tags={['tu-primer-mapeo']}
+          id="navItem5"
+          className="navigation__item navigation__item--violet"
+          activeClassName="navigation__item--active"
+        >
           <CustomLink href="/#primer-mapeo">Tu primer Mapeo</CustomLink>
-        </li>
+        </HeaderNavLink>
       </ul>
     </div>
+   */}
   </header>
 );
 
