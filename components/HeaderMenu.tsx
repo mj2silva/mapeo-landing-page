@@ -78,7 +78,13 @@ const HeaderMenu : FC = () => {
             className="navigation__item navigation__item--yellow"
             activeClassName="navigation__item--active"
           >
-            <CustomLink href="/blog" onClick={onClick} tabIndex={-1}>Blog</CustomLink>
+            <CustomLink
+              href={process.env.NEXT_PUBLIC_BLOG_URL}
+              onClick={onClick}
+              tabIndex={-1}
+            >
+              Blog
+            </CustomLink>
           </HeaderNavLink>
           <HeaderNavLink
             tags={['tu-primer-mapeo']}

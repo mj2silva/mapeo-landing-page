@@ -37,6 +37,7 @@
     max-height: 100%;
     padding: 0;
     border: none;
+    align-items: center;
     cursor: pointer;
     object-fit: fill;
     &:hover {
@@ -121,14 +122,15 @@
     }
     &__item {
       &-title {
-        font-size: 1rem;
+        font-size: 1.5rem;
       }
     }
   }
   @media screen and (max-width: $breakpoint-mobile){
     &__item {
+      align-items: center;
       &-title {
-        font-size: 1rem;
+        font-size: 2rem;
       }
       &-description {
         font-size: .8rem;
