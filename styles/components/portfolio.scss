@@ -41,9 +41,11 @@
     cursor: pointer;
     object-fit: fill;
     &:hover {
-      transition-duration: 500ms;
-      transform: scale(1.1);
-      z-index: 10;
+      @media screen and (min-width: $breakpoint-tablet){
+        transition-duration: 500ms;
+        transform: scale(1.1);
+        z-index: 10;
+      }
     }
     &:hover &-gradient::after {
       background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,87,151,0) 40%);
