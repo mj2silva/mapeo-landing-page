@@ -1,5 +1,6 @@
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { ReactElement } from 'react';
+import { Dispatch, ReactElement, SetStateAction } from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
 import AboutUs from '../components/AboutUs';
 import CallToAction from '../components/CallToAction';
@@ -11,76 +12,37 @@ import ScheduleMeeting from '../components/ScheduleMeeting';
 import SolutionsMarketing from '../components/SolutionsMarketing';
 import SolutionsPersons from '../components/SolutionsPersons';
 import usePage from '../hooks/usePage';
+import { firestore } from '../lib/firebase';
 
-const portfolioItems : PortfolioItemProps[] = [
-  {
-    name: 'MASSA',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio1.png',
-  },
-  {
-    name: 'BIOGOODS',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio2.png',
-  },
-  {
-    name: 'PAWRI',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio3.png',
-  },
-  {
-    name: 'ESPERÁNDOTE',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio4.png',
-  },
-  {
-    name: 'TANMA',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio5.png',
-  },
-  {
-    name: 'TAKAY',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio6.png',
-  },
-  {
-    name: 'SIARCOS',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio7.png',
-  },
-  {
-    name: 'AMARILLO STUDIO',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio8.png',
-  },
-];
+export const getStaticProps : GetStaticProps = async () => {
+  const portafolioRef = firestore.collection('portafolio');
+  const data = await portafolioRef.get();
+  const portafolioItems = [];
+  data.forEach((item) => {
+    const itemData = item.data();
+    portafolioItems.push({
+      name: itemData.nombre,
+      description: itemData.descripcion,
+      imageUrl: itemData.imageUrl,
+    });
+  });
+  return { props: { portafolioItems } };
+};
 
-export default function Home() : ReactElement {
+type Props = {
+  portafolioItems: PortfolioItemProps[];
+};
+
+const onElementInvisibleGenerator = (
+  elementName: string, hideFunction: Dispatch<SetStateAction<string>>,
+) => (isVisible : boolean) => {
+  if (isVisible) hideFunction(elementName);
+};
+
+export default function Home(props : Props) : ReactElement {
   const { setCurrentVisible } = usePage();
-  const onPresentationVisible = (isVisible) => {
-    if (isVisible) setCurrentVisible('presentation');
-  };
-  const onAboutUsVisible = (isVisible) => {
-    if (isVisible) setCurrentVisible('nosotros');
-  };
-  const onCallToActionVisible = (isVisible) => {
-    if (isVisible) setCurrentVisible('call-to-action');
-  };
-  const onSolutionsPersonsVisible = (isVisible) => {
-    if (isVisible) setCurrentVisible('personas');
-  };
-  const onSolutionsMarketingVisible = (isVisible) => {
-    if (isVisible) setCurrentVisible('marketing');
-  };
-  const onPortfolioVisible = (isVisible) => {
-    if (isVisible) setCurrentVisible('portafolio');
-  };
-  const onCustomerStoriesVisible = (isVisible) => {
-    if (isVisible) setCurrentVisible('historias');
-  };
-  const onScheduleMeetingVisbli = (isVisible) => {
-    if (isVisible) setCurrentVisible('tu-primer-mapeo');
-  };
+  const { portafolioItems } = props;
+
   return (
     <>
       <Head>
@@ -88,32 +50,32 @@ export default function Home() : ReactElement {
         <script defer src="/animations/animateInViewport.js" />
         <script defer src="/animations/menuResonsive.js" />
       </Head>
-      <VisibilitySensor onChange={onPresentationVisible}>
+      <VisibilitySensor onChange={onElementInvisibleGenerator('presentation', setCurrentVisible)}>
         <Presentation />
       </VisibilitySensor>
-      <VisibilitySensor onChange={onAboutUsVisible}>
+      <VisibilitySensor onChange={onElementInvisibleGenerator('nosotros', setCurrentVisible)}>
         <AboutUs />
       </VisibilitySensor>
-      <VisibilitySensor onChange={onCallToActionVisible}>
+      <VisibilitySensor onChange={onElementInvisibleGenerator('call-to-action', setCurrentVisible)}>
         <CallToAction />
       </VisibilitySensor>
-      <VisibilitySensor onChange={onSolutionsPersonsVisible}>
+      <VisibilitySensor onChange={onElementInvisibleGenerator('personas', setCurrentVisible)}>
         <SolutionsPersons />
       </VisibilitySensor>
-      <VisibilitySensor onChange={onSolutionsMarketingVisible}>
+      <VisibilitySensor onChange={onElementInvisibleGenerator('marketing', setCurrentVisible)}>
         <SolutionsMarketing />
       </VisibilitySensor>
       <VisibilitySensor
-        onChange={onPortfolioVisible}
+        onChange={onElementInvisibleGenerator('portafolio', setCurrentVisible)}
         partialVisibility
         offset={{ bottom: 200, top: 500 }}
       >
-        <Portfolio items={portfolioItems} />
+        <Portfolio items={portafolioItems} />
       </VisibilitySensor>
-      <VisibilitySensor onChange={onCustomerStoriesVisible}>
+      <VisibilitySensor onChange={onElementInvisibleGenerator('historias', setCurrentVisible)}>
         <CustomerStories />
       </VisibilitySensor>
-      <VisibilitySensor onChange={onScheduleMeetingVisbli}>
+      <VisibilitySensor onChange={onElementInvisibleGenerator('tu-primer-mapeo', setCurrentVisible)}>
         <ScheduleMeeting />
       </VisibilitySensor>
     </>
