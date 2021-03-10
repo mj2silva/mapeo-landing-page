@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 import { FC, useEffect, useState } from 'react';
 import PageProvider from '../components/PageProvider';
-import PortfolioItem, { PortfolioItemProps } from '../components/PortfolioItem';
+import PortfolioItem from '../components/PortfolioItem';
 import PortfolioTags from '../components/PortfolioTags';
 import ScheduleMeeting from '../components/ScheduleMeeting';
 import usePage from '../hooks/usePage';
@@ -25,7 +25,6 @@ const Portafolio : FC<Props> = (props: Props) => {
   const [currentItems, setCurrentItems] = useState<PortfolioElement[]>(portafolioItems);
   const handleTagsChange = (selectedTags: PortfolioTag[]) : void => {
     const filteredItems = [];
-    console.log({ selectedTags });
     if (selectedTags.length > 0) {
       selectedTags.forEach((tag) => {
         filteredItems.push(
