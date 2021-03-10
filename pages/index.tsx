@@ -22,8 +22,8 @@ export const getStaticProps : GetStaticProps = async () => {
     const itemData = item.data();
     portafolioItems.push({
       name: itemData.nombre,
-      description: itemData.descripcion,
-      imageUrl: itemData.imageUrl,
+      description: itemData.descripcion || '',
+      imageUrl: itemData.imagenUrl,
     });
   });
   return { props: { portafolioItems } };

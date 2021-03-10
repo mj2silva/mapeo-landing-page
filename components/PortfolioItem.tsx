@@ -36,7 +36,7 @@ const PortfolioItem : FC<PortfolioItemProps> = (props: PortfolioItemProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loadItems = async () => {
+    const loadItems = async () : Promise<void> => {
       const newImageUrl = await storage.refFromURL(imageUrl).getDownloadURL();
       setCurrentImage(newImageUrl);
       setIsLoading(false);
