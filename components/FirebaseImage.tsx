@@ -1,36 +1,23 @@
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import { FC, useEffect, useState } from 'react';
 import { loadFirebaseImage } from '../lib/firebase';
 import Spinner from './common/Spinner';
 
-type Props = {
-  firebaseUrl: string,
-  alt?: string,
-  width?: number,
-  height?: number,
-  layout?: 'intrinsic' | 'fixed' | 'responsive'
-}
-
-const defaultProps : Partial<Props> = {
-  alt: '',
-  width: null,
-  height: null,
-  layout: null,
-};
+type Props = ImageProps
 
 const FirebaseImage : FC<Props> = (props : Props) => {
   const {
-    firebaseUrl, alt, width, height, layout,
+    src,
   } = props;
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [src, setSrc] = useState<string>(null);
-
+  const [currentSrc, setSrc] = useState<string>(null);
+  const [isImageLoading, setIsImageLoading] = useState(true);
   useEffect(
     () => {
       const loadImages = async () : Promise<void> => {
         setIsLoading(true);
         try {
-          const imageUrl = await loadFirebaseImage(firebaseUrl);
+          const imageUrl = await loadFirebaseImage(src);
           setSrc(imageUrl);
           setIsLoading(false);
         } catch {
@@ -41,21 +28,26 @@ const FirebaseImage : FC<Props> = (props : Props) => {
 
       loadImages();
     },
-    [firebaseUrl],
+    [src],
   );
-  return (isLoading)
-    ? <Spinner />
-    : (
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        layout={layout}
-      />
-    );
+  return (
+    <>
+      {(isLoading)
+        ? <div className="spinner-container"><Spinner /></div>
+        : (
+          <>
+            { (isImageLoading) ? <div className="spinner-container"><Spinner /></div> : null }
+            <Image
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...props}
+              src={currentSrc}
+              hidden={isImageLoading}
+              onLoad={() => setIsImageLoading(false)}
+            />
+          </>
+        )}
+    </>
+  );
 };
-
-FirebaseImage.defaultProps = defaultProps;
 
 export default FirebaseImage;

@@ -17,12 +17,13 @@ const Portfolio : FC<PortfolioProps> = (props : PortfolioProps) => {
         </h1>
       </div>
       <div className="portfolio__list">
-        { items.map((item, index) => (
+        { items.slice(0, 8).map((item, index) => (
           <PortfolioItem
             key={`pf-item-${item.name}-${index + 1}`}
             name={item.name}
             description={item.description}
             imageUrl={item.imageUrl}
+            thumbUrl={item.thumbUrl}
           />
         )) }
       </div>

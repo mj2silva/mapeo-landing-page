@@ -1,17 +1,18 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
 import {
   FC, MouseEvent, useEffect, useState,
 } from 'react';
 import Modal from 'react-modal';
 import { storage } from '../lib/firebase';
 import Spinner from './common/Spinner';
+import FirebaseImage from './FirebaseImage';
 
 export type PortfolioItemProps = {
   name: string,
   description: string,
   imageUrl: string,
+  thumbUrl: string,
 }
 
 Modal.setAppElement('#__next');
@@ -30,14 +31,16 @@ const customStyles : Modal.Styles = {
 };
 
 const PortfolioItem : FC<PortfolioItemProps> = (props: PortfolioItemProps) => {
-  const { name, description, imageUrl } = props;
+  const {
+    name, description, thumbUrl, imageUrl,
+  } = props;
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [currentImage, setCurrentImage] = useState(imageUrl);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadItems = async () : Promise<void> => {
-      const newImageUrl = await storage.refFromURL(imageUrl).getDownloadURL();
+      const newImageUrl = await storage.refFromURL(thumbUrl).getDownloadURL();
       setCurrentImage(newImageUrl);
       setIsLoading(false);
     };
@@ -75,13 +78,16 @@ const PortfolioItem : FC<PortfolioItemProps> = (props: PortfolioItemProps) => {
         overlayClassName="Modal__Overlay"
         bodyOpenClassName="Modal__Body"
       >
-        <h1 className="modal__title">{name}</h1>
-        <button className="modal__close-button" type="button" onClick={closeModal}>
+        <button className="Modal__close-button" type="button" onClick={closeModal}>
           <FontAwesomeIcon icon={faTimes} />
         </button>
-        <div className="modal__image">
-          <Image src={currentImage} alt="portafolio 1" layout="fill" objectFit="contain" />
-        </div>
+        <FirebaseImage
+          src={imageUrl}
+          alt={name}
+          layout="fill"
+          objectFit="cover"
+          objectPosition="top"
+        />
       </Modal>
     </button>
   );

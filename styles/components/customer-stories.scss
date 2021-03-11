@@ -24,11 +24,12 @@
       & h2 {
         position: relative;
         display: inline;
+        font-size: 2rem;
         &::before {
           content: "\"";
           font-style: italic;
           position: absolute;
-          left: -1.8rem;
+          left: -1.1rem;
         }
         &::after {
           content: "\"";
@@ -154,7 +155,7 @@
       }
       &-data {
         & h2 {
-          font-size: 2rem;
+          font-size: 1.8rem;
         }
         & h3 {
           font-size: 1rem;

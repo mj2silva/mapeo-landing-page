@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import { FC, useEffect, useState } from 'react';
 import PageProvider from '../components/PageProvider';
 import PortfolioItem from '../components/PortfolioItem';
@@ -44,6 +45,11 @@ const Portafolio : FC<Props> = (props: Props) => {
   }, [setCurrentVisible]);
   return (
     <PageProvider>
+      <Head>
+        <title>Mapeo - Portafolio</title>
+        <script defer src="/animations/animateInViewport.js" />
+        <script defer src="/animations/menuResonsive.js" />
+      </Head>
       <section className="head">
         <div className="head__title">
           <h1>Portafolio</h1>
@@ -58,6 +64,7 @@ const Portafolio : FC<Props> = (props: Props) => {
               name={item.name}
               description={item.description}
               imageUrl={item.imageUrl}
+              thumbUrl={item.thumbUrl}
             />
           ))}
         </div>
