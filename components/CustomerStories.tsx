@@ -11,7 +11,7 @@ const renderFirstColumn = (customerStories : CustomerStorie[]) : ReactNode[] => 
   customerStories.map((storie) => (
     <div className="customer-stories__picture">
       <FirebaseImage
-        firebaseUrl={storie.photoUrl}
+        src={storie.photoUrl}
         alt={storie.names}
         width={500}
         height={500}

@@ -41,7 +41,8 @@ const getPortfolioItemsWithFirebaseUrl = async (
       name: itemData.nombre,
       description: itemData.descripcion || '',
       imageUrl: itemData.imagenUrl,
-      tags: itemData.tags,
+      tags: itemData.tags || [],
+      thumbUrl: itemData.miniaturaUrl,
     });
   });
 

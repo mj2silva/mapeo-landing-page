@@ -13,6 +13,7 @@ export type PortfolioElement = {
   name: string,
   description: string,
   imageUrl: string,
+  thumbUrl: string,
   tags: string[],
 }
 

@@ -10,6 +10,22 @@
   padding: 3rem;
   width: 90vw;
   border: none;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & div {
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  & div img {
+    overflow-x: hidden;
+    width: 90% !important;
+    max-height: none !important;
+    height: auto !important;
+    position: relative !important;
+  }
   &:focus {
     border: none;
     outline: none;
@@ -32,30 +48,44 @@
     padding: 1rem;
     width: 90% !important;
   }
-}
-
-.modal {
   &__close-button {
     background-color: transparent;
     margin: 1rem;
     position: absolute;
     right: 2rem;
+    top: 2rem;
     font-size: 2rem;
+    z-index: 99;
+    color: $white;
     cursor: pointer;
     &:hover {
       color: $blueHover;
     }
   }
+}
+
+.modal {
+  
   &__title {
     margin: 3rem auto;
     color: $blue;
   }
   &__image {
     box-shadow: 0px 0px 13px 4px rgba(0,0,0,0.45);
-    max-width: 90%;
+    max-width: 100%;
     min-width: 70%;
     min-height: 80vh;
     position: relative;
+    & div {
+      height: 100%;
+      overflow: scroll !important;
+    }
+    & div img {
+      width: 100% !important;
+      max-height: none !important;
+      height: auto !important;
+      position: relative !important;
+    }
   }
   @media screen and (max-width: $breakpoint-desktop) {
     &__image {
