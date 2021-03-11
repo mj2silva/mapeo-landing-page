@@ -12,18 +12,29 @@ import ScheduleMeeting from '../components/ScheduleMeeting';
 import SolutionsMarketing from '../components/SolutionsMarketing';
 import SolutionsPersons from '../components/SolutionsPersons';
 import usePage from '../hooks/usePage';
-import { getCustomerStories, getPortfolioItemsWithFirebaseUrl } from '../lib/firebase';
-import { CustomerStorie } from '../lib/types';
+import { getCustomerStories, getMapeoServices, getPortfolioItemsWithFirebaseUrl } from '../lib/firebase';
+import { CustomerStorie, MapeoService } from '../lib/types';
 
 export const getStaticProps : GetStaticProps = async () => {
   const portafolioItems = await getPortfolioItemsWithFirebaseUrl();
   const customerStories = await getCustomerStories();
-  return { props: { portafolioItems, customerStories } };
+  const marketingMapeoServices = await getMapeoServices('marketing');
+  const personsMapeoServices = await getMapeoServices('colaboradores');
+  return {
+    props: {
+      portafolioItems,
+      customerStories,
+      marketingMapeoServices,
+      personsMapeoServices,
+    },
+  };
 };
 
 type Props = {
   portafolioItems: PortfolioItemProps[];
   customerStories: CustomerStorie[];
+  marketingMapeoServices: MapeoService[];
+  personsMapeoServices: MapeoService[];
 };
 
 const onElementInvisibleGenerator = (
@@ -34,7 +45,12 @@ const onElementInvisibleGenerator = (
 
 export default function Home(props : Props) : ReactElement {
   const { setCurrentVisible } = usePage();
-  const { portafolioItems, customerStories } = props;
+  const {
+    portafolioItems,
+    customerStories,
+    marketingMapeoServices,
+    personsMapeoServices,
+  } = props;
 
   return (
     <>
@@ -53,10 +69,10 @@ export default function Home(props : Props) : ReactElement {
         <CallToAction />
       </VisibilitySensor>
       <VisibilitySensor onChange={onElementInvisibleGenerator('personas', setCurrentVisible)}>
-        <SolutionsPersons />
+        <SolutionsPersons services={personsMapeoServices} />
       </VisibilitySensor>
       <VisibilitySensor onChange={onElementInvisibleGenerator('marketing', setCurrentVisible)}>
-        <SolutionsMarketing />
+        <SolutionsMarketing services={marketingMapeoServices} />
       </VisibilitySensor>
       <VisibilitySensor
         onChange={onElementInvisibleGenerator('portafolio', setCurrentVisible)}

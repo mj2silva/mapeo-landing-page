@@ -1,7 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/storage';
-import { CustomerStorie, PortfolioElement, PortfolioTag } from './types';
+import {
+  CustomerStorie, MapeoService, PortfolioElement, PortfolioTag,
+} from './types';
 
 // Configuración de la aplicación con firebase
 const firebaseConfig = {
@@ -104,6 +106,23 @@ const getCustomerStories = async () : Promise<CustomerStorie[]> => {
   return customerStories;
 };
 
+const getMapeoServices = async (type: 'marketing' | 'colaboradores') : Promise<MapeoService[]> => {
+  const mapeoServicesRef = firestore.collection('servicios');
+  const mapeoServices : MapeoService[] = [];
+  const data = await mapeoServicesRef.where('tipo', '==', type).get();
+  data.forEach((item) => {
+    const itemData = item.data();
+    mapeoServices.push({
+      id: item.id,
+      name: itemData.nombre,
+      description: itemData.descripcion,
+      imageUrl: itemData.imagenUrl,
+      type: itemData.tipo,
+    });
+  });
+  return mapeoServices;
+};
+
 const loadFirebaseImage = async (firebaseImageUrl : string) : Promise<string> => {
   const imageDownloadUrl = await storage.refFromURL(firebaseImageUrl).getDownloadURL();
   return imageDownloadUrl;
@@ -111,6 +130,7 @@ const loadFirebaseImage = async (firebaseImageUrl : string) : Promise<string> =>
 
 export {
   getPortfolioItems,
+  getMapeoServices,
   transformPortfolioItems,
   getPortfolioItemsWithFirebaseUrl,
   getTagsForPortfolio,
