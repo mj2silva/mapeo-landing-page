@@ -26,7 +26,8 @@
     "react-firebase-hooks": "^2.2.0",
     "react-modal": "^3.12.1",
     "react-visibility-sensor": "^5.1.1",
-    "sass": "^1.32.7"
+    "sass": "^1.32.7",
+    "xhr2": "^0.2.1"
   },
   "devDependencies": {
     "@types/node": "^14.14.25",

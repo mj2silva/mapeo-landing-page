@@ -1,40 +1,32 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Slider from './Slider';
 import Section, { GridType } from './common/Section';
 import { SliderImageProps } from './Slider/lib/types';
 
-type Props = {
-  images?: SliderImageProps[]
-}
-
-const defaultProps : Partial<Props> = {
-  images: [
-    {
-      src: '/img/imagen-slider.png',
-      width: 500,
-      height: 400,
-      alt: 'slider 1',
-      id: 0,
-    },
-    {
-      src: '/img/imagen-slider.png',
-      width: 500,
-      height: 400,
-      alt: 'slider 2',
-      id: 1,
-    },
-    {
-      src: '/img/imagen-slider.png',
-      width: 500,
-      height: 400,
-      alt: 'slider 3',
-      id: 2,
-    },
-  ],
+const getImages = async () : Promise<SliderImageProps[]> => {
+  const { storage } = await import('../lib/firebase');
+  const filesListRef = storage.ref().child('pagina-principal/slider-principal');
+  const listOfFiles = await filesListRef.listAll();
+  const srcList = await Promise.all(listOfFiles.items.map((item) => item.getDownloadURL()));
+  const imageList = listOfFiles.items.map((item, index) => ({
+    src: srcList[index],
+    width: 500,
+    height: 400,
+    alt: item.name,
+    id: index,
+  }));
+  return imageList;
 };
 
-const Presentation : FC<Props> = (props : Props) => {
-  const { images } = props;
+const Presentation : FC = () => {
+  const [imageList, setImageList] = useState<SliderImageProps[]>([]);
+
+  useEffect(() => {
+    const loadImages = async () : Promise<void> => {
+      setImageList(await getImages());
+    };
+    loadImages();
+  }, []);
   return (
     <Section
       gridType={GridType.reversable}
@@ -52,12 +44,10 @@ const Presentation : FC<Props> = (props : Props) => {
         </div>
       )}
       secondColumn={(
-        <Slider imageList={images} className="presentation__slider" />
+        <Slider imageList={imageList} className="presentation__slider" />
         )}
     />
   );
 };
-
-Presentation.defaultProps = defaultProps;
 
 export default Presentation;

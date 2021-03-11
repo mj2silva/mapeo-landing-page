@@ -1,74 +1,43 @@
-import { FC, useEffect } from 'react';
+import { GetStaticProps } from 'next';
+import { FC, useEffect, useState } from 'react';
 import PageProvider from '../components/PageProvider';
-import PortfolioItem, { PortfolioItemProps } from '../components/PortfolioItem';
+import PortfolioItem from '../components/PortfolioItem';
+import PortfolioTags from '../components/PortfolioTags';
 import ScheduleMeeting from '../components/ScheduleMeeting';
 import usePage from '../hooks/usePage';
+import { getPortfolioItemsWithFirebaseUrl, getTagsForPortfolio } from '../lib/firebase';
+import { PortfolioElement, PortfolioTag } from '../lib/types';
 
-const portfolioItems : PortfolioItemProps[] = [
-  {
-    name: 'MASSA',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio1.png',
-  },
-  {
-    name: 'BIOGOODS',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio2.png',
-  },
-  {
-    name: 'PAWRI',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio3.png',
-  },
-  {
-    name: 'ESPERÁNDOTE',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio4.png',
-  },
-  {
-    name: 'TANMA',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio5.png',
-  },
-  {
-    name: 'TAKAY',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio6.png',
-  },
-  {
-    name: 'SIARCOS',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio7.png',
-  },
-  {
-    name: 'AMARILLO STUDIO',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio8.png',
-  },
-  {
-    name: 'MASSA',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio1.png',
-  },
-  {
-    name: 'BIOGOODS',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio2.png',
-  },
-  {
-    name: 'PAWRI',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio3.png',
-  },
-  {
-    name: 'ESPERÁNDOTE',
-    description: 'Redes Sociales',
-    imageUrl: '/img/marca-portafolio4.png',
-  },
-];
+export const getStaticProps : GetStaticProps = async () => {
+  const portafolioItems = await getPortfolioItemsWithFirebaseUrl();
+  const tags = await getTagsForPortfolio();
+  return { props: { portafolioItems, tags } };
+};
 
-const Portafolio : FC = () => {
+type Props = {
+  portafolioItems: PortfolioElement[];
+  tags: PortfolioTag[];
+};
+
+const Portafolio : FC<Props> = (props: Props) => {
   const { setCurrentVisible } = usePage();
+  const { portafolioItems, tags } = props;
+  const [currentItems, setCurrentItems] = useState<PortfolioElement[]>(portafolioItems);
+  const handleTagsChange = (selectedTags: PortfolioTag[]) : void => {
+    const filteredItems = [];
+    if (selectedTags.length > 0) {
+      selectedTags.forEach((tag) => {
+        filteredItems.push(
+          ...portafolioItems.filter((
+            item,
+          ) => item.tags.includes(tag.id) && !filteredItems.some((
+            oldItem,
+          ) => (oldItem.name === item.name))),
+        );
+      });
+      setCurrentItems(filteredItems);
+    }
+  };
 
   useEffect(() => {
     setCurrentVisible('portafolio');
@@ -79,33 +48,11 @@ const Portafolio : FC = () => {
         <div className="head__title">
           <h1>Portafolio</h1>
         </div>
-        <div className="head__controls">
-          <div className="head__controls-keywords">
-            <h3>Palabras clave</h3>
-            <ul>
-              <li>Todo</li>
-              <li>Campañas Digitales</li>
-              <li>Redes Sociales</li>
-              <li>Campañas promocionales</li>
-              <li>Activaciones de Marketing</li>
-              <li>Branding</li>
-              <li>Influenciadores</li>
-              <li>Materiales</li>
-              <li>Pop & Toolkits</li>
-              <li>Embudos de conversión</li>
-              <li>Compra de medios</li>
-            </ul>
-          </div>
-          <div className="head__controls-search">
-            <form>
-              <input type="search" name="search" id="search" placeholder="Buscar..." />
-            </form>
-          </div>
-        </div>
+        <PortfolioTags tags={tags} onTagsChange={handleTagsChange} />
       </section>
       <section className="portfolio">
         <div className="portfolio__list">
-          { portfolioItems.map((item, index) => (
+          { currentItems.map((item, index) => (
             <PortfolioItem
               key={`pf-item-${item.name}-${index + 1}`}
               name={item.name}

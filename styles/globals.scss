@@ -30,6 +30,7 @@
 // Animations
 @import "components/mapeo-circle.scss";
 @import "components/appear.scss";
+@import "components/spinner.scss";
 
 // Librerias externas
 @import "./lib/calendly.scss";
@@ -72,6 +73,21 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance:none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: $darkBlue;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $blue;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px grey;
 }
 
 .demo-bg {

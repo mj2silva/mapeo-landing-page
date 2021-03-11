@@ -2,9 +2,11 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import {
-  FC, MouseEvent, useState,
+  FC, MouseEvent, useEffect, useState,
 } from 'react';
 import Modal from 'react-modal';
+import { storage } from '../lib/firebase';
+import Spinner from './common/Spinner';
 
 export type PortfolioItemProps = {
   name: string,
@@ -30,6 +32,17 @@ const customStyles : Modal.Styles = {
 const PortfolioItem : FC<PortfolioItemProps> = (props: PortfolioItemProps) => {
   const { name, description, imageUrl } = props;
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [currentImage, setCurrentImage] = useState(imageUrl);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadItems = async () : Promise<void> => {
+      const newImageUrl = await storage.refFromURL(imageUrl).getDownloadURL();
+      setCurrentImage(newImageUrl);
+      setIsLoading(false);
+    };
+    loadItems();
+  });
 
   const openModal = () : void => {
     setModalIsOpen(true);
@@ -41,7 +54,16 @@ const PortfolioItem : FC<PortfolioItemProps> = (props: PortfolioItemProps) => {
   return (
     <button onClick={openModal} type="button" className="portfolio__item">
       <div className="portfolio__item-gradient">
-        <img src={imageUrl} alt="portafolio 1" width="250px" />
+        { (isLoading)
+          ? (
+            <div
+              style={{
+                width: 250, height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center',
+              }}
+            >
+              <Spinner />
+            </div>
+          ) : <img src={currentImage} alt="portafolio 1" width="250px" /> }
       </div>
       <div className="portfolio__item-title">{ name }</div>
       <div className="portfolio__item-description">{ description }</div>
@@ -58,7 +80,7 @@ const PortfolioItem : FC<PortfolioItemProps> = (props: PortfolioItemProps) => {
           <FontAwesomeIcon icon={faTimes} />
         </button>
         <div className="modal__image">
-          <Image src={imageUrl} alt="portafolio 1" layout="fill" objectFit="contain" />
+          <Image src={currentImage} alt="portafolio 1" layout="fill" objectFit="contain" />
         </div>
       </Modal>
     </button>
