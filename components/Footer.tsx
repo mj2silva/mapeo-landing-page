@@ -37,7 +37,7 @@ const Footer : FC = () => (
               <span>Conversemos, es fácil y rápido</span>
             </h2>
           </div>
-          <CustomLink href="/" className="appear_vibrate footer__whatsapp button">
+          <CustomLink isBlank href="http://bit.ly/ContactoMapeoWeb" className="appear_vibrate footer__whatsapp button">
             <div className="footer__whatsapp-icon">
               <FontAwesomeIcon icon={faWhatsapp} />
             </div>
@@ -48,16 +48,16 @@ const Footer : FC = () => (
           <div className="footer__social-media-icons">
             <ul>
               <li id="facebook">
-                <CustomLink href="/"><FontAwesomeIcon icon={faFacebookF} /></CustomLink>
+                <CustomLink isBlank href="https://www.facebook.com/mapeo.peru"><FontAwesomeIcon icon={faFacebookF} /></CustomLink>
               </li>
               <li id="instagram">
-                <CustomLink href="/"><FontAwesomeIcon icon={faInstagram} /></CustomLink>
+                <CustomLink isBlank href="https://www.instagram.com/mapeo.pe/"><FontAwesomeIcon icon={faInstagram} /></CustomLink>
               </li>
               <li id="linkedin">
-                <CustomLink href="/"><FontAwesomeIcon icon={faLinkedinIn} /></CustomLink>
+                <CustomLink isBlank href="https://www.linkedin.com/company/mapeoperu/"><FontAwesomeIcon icon={faLinkedinIn} /></CustomLink>
               </li>
               <li id="behance">
-                <CustomLink href="/"><FontAwesomeIcon icon={faBehance} /></CustomLink>
+                <CustomLink isBlank href="https://www.behance.net/mapeosoluciones"><FontAwesomeIcon icon={faBehance} /></CustomLink>
               </li>
             </ul>
           </div>
