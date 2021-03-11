@@ -20,3 +20,12 @@ export type PortfolioTag = {
   id?: string,
   name: string,
 }
+
+export type CustomerStorie = {
+  id?: string,
+  position: string,
+  companyName: string,
+  photoUrl: string,
+  message: string,
+  names: string,
+}
