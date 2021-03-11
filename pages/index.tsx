@@ -12,25 +12,18 @@ import ScheduleMeeting from '../components/ScheduleMeeting';
 import SolutionsMarketing from '../components/SolutionsMarketing';
 import SolutionsPersons from '../components/SolutionsPersons';
 import usePage from '../hooks/usePage';
-import { firestore } from '../lib/firebase';
+import { getCustomerStories, getPortfolioItemsWithFirebaseUrl } from '../lib/firebase';
+import { CustomerStorie } from '../lib/types';
 
 export const getStaticProps : GetStaticProps = async () => {
-  const portafolioRef = firestore.collection('portafolio');
-  const data = await portafolioRef.get();
-  const portafolioItems = [];
-  data.forEach((item) => {
-    const itemData = item.data();
-    portafolioItems.push({
-      name: itemData.nombre,
-      description: itemData.descripcion || '',
-      imageUrl: itemData.imagenUrl,
-    });
-  });
-  return { props: { portafolioItems } };
+  const portafolioItems = await getPortfolioItemsWithFirebaseUrl();
+  const customerStories = await getCustomerStories();
+  return { props: { portafolioItems, customerStories } };
 };
 
 type Props = {
   portafolioItems: PortfolioItemProps[];
+  customerStories: CustomerStorie[];
 };
 
 const onElementInvisibleGenerator = (
@@ -41,7 +34,7 @@ const onElementInvisibleGenerator = (
 
 export default function Home(props : Props) : ReactElement {
   const { setCurrentVisible } = usePage();
-  const { portafolioItems } = props;
+  const { portafolioItems, customerStories } = props;
 
   return (
     <>
@@ -73,7 +66,7 @@ export default function Home(props : Props) : ReactElement {
         <Portfolio items={portafolioItems} />
       </VisibilitySensor>
       <VisibilitySensor onChange={onElementInvisibleGenerator('historias', setCurrentVisible)}>
-        <CustomerStories />
+        <CustomerStories stories={customerStories} />
       </VisibilitySensor>
       <VisibilitySensor onChange={onElementInvisibleGenerator('tu-primer-mapeo', setCurrentVisible)}>
         <ScheduleMeeting />

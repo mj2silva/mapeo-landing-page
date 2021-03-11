@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/storage';
-import { PortfolioElement, PortfolioTag } from './types';
+import { CustomerStorie, PortfolioElement, PortfolioTag } from './types';
 
 // Configuración de la aplicación con firebase
 const firebaseConfig = {
@@ -83,9 +83,36 @@ const getTagsForPortfolio = async () : Promise<PortfolioTag[]> => {
   return portfolioTags;
 };
 
+const getCustomerStories = async () : Promise<CustomerStorie[]> => {
+  const customerStoriesRef = firestore.collection('historiasClientes');
+  const customerStories : CustomerStorie[] = [];
+  const data = await customerStoriesRef.get();
+
+  data.forEach((item) => {
+    const itemData = item.data();
+    customerStories.push({
+      id: item.id,
+      names: itemData.nombres,
+      position: itemData.cargo,
+      companyName: itemData.empresa,
+      message: itemData.mensaje,
+      photoUrl: itemData.fotoClienteUrl || '',
+    });
+  });
+
+  return customerStories;
+};
+
+const loadFirebaseImage = async (firebaseImageUrl : string) : Promise<string> => {
+  const imageDownloadUrl = await storage.refFromURL(firebaseImageUrl).getDownloadURL();
+  return imageDownloadUrl;
+};
+
 export {
   getPortfolioItems,
   transformPortfolioItems,
   getPortfolioItemsWithFirebaseUrl,
   getTagsForPortfolio,
+  getCustomerStories,
+  loadFirebaseImage,
 };

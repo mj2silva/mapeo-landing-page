@@ -11,7 +11,7 @@ const getImages = async () : Promise<SliderImageProps[]> => {
   const imageList = listOfFiles.items.map((item, index) => ({
     src: srcList[index],
     width: 500,
-    height: 400,
+    height: 500,
     alt: item.name,
     id: index,
   }));

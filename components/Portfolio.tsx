@@ -27,7 +27,7 @@ const Portfolio : FC<PortfolioProps> = (props : PortfolioProps) => {
         )) }
       </div>
       <div className="portfolio__footer">
-        <a href="/portafolio" className="button portfolio__link">Ver mas proyectos</a>
+        <a href="/portafolio" className="button portfolio__link">Ver más proyectos</a>
       </div>
     </section>
   );
