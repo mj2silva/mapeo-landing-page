@@ -34,10 +34,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    &-items {
+      height: 20rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
     &-items ul {
       margin: 0;
       padding: 0;
       list-style: none;
+      max-height: 100%;
     }
     &-items ul li {
       display: grid;
@@ -60,8 +67,10 @@
       }
     }
     &-title {
-      align-self: flex-start;
       font-family: $gilroyBold;
+      height: 5rem;
+      text-align: center;
+      justify-self: center;
     }
   }
 
@@ -145,6 +154,7 @@
 
   @media screen and (max-width: $breakpoint-laptop) {
     min-height: 0;
+    height: auto;
     padding: 3rem 0;
     &__image {
       max-width: 50%;
@@ -162,13 +172,25 @@
     &__list {
       &-title {
         align-self: center;
+        height: 5rem;
+        text-align: center;
+        justify-self: center;
       }
     }
   }
   @media screen and (max-width: $breakpoint-tablet) {
+    &__list {
+      &-items {
+        height: 24rem;
+      }
+      &-items ul {
+      align-items: center;
+      }
+    }
     &__image {
       max-width: 70%;
       width: 70%;
+      margin: 2rem 0;
     }
     &__arrow {
       &--right {

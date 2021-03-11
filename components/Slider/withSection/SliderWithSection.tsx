@@ -14,7 +14,7 @@ const SliderWithSection : FC<SliderWithSectionProps> = (props: SliderWithSection
     className, sliderContentList, titleNode, targetId,
   } = props;
   return (
-    <SliderProvider delay={3000} transitionAuto>
+    <SliderProvider delay={5000} transitionAuto>
       <SliderWithSectionComponent
         className={className}
         sliderContent={sliderContentList}

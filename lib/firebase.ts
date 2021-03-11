@@ -128,6 +128,12 @@ const loadFirebaseImage = async (firebaseImageUrl : string) : Promise<string> =>
   return imageDownloadUrl;
 };
 
+const getSliderImageUrls = async () : Promise<firebase.storage.Reference[]> => {
+  const filesListRef = storage.ref().child('pagina-principal/slider-principal');
+  const listOfFiles = await filesListRef.listAll();
+  return listOfFiles.items;
+};
+
 export {
   getPortfolioItems,
   getMapeoServices,
@@ -136,4 +142,5 @@ export {
   getTagsForPortfolio,
   getCustomerStories,
   loadFirebaseImage,
+  getSliderImageUrls,
 };
