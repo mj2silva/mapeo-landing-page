@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import FirebaseImage from '../../../FirebaseImage';
 import useSlider from '../../hooks/useSlider';
 import { SliderImageProps } from '../../lib/types';
 
@@ -17,10 +18,11 @@ const ImageColumn : FC<SectionImageProps> = ({ className, image, id } : SectionI
   }, [currentPage, id]);
   return (
     <div className={`soluciones__image ${className} ${currentClassName}`}>
-      <img
+      <FirebaseImage
         src={image.src}
         alt={image.alt}
         width={image.width}
+        height={image.height}
       />
     </div>
   );

@@ -12,14 +12,20 @@ const SliderComponent : FC<SliderProps> = (props : SliderProps) => {
   useEffect(() => {
     setTotalPages(imageList.length);
   }, [imageList, setTotalPages]);
-  return (imageList.length === 0) ? <Spinner /> : (
-    <div className={`slider ${className}`}>
-      <SliderImages imageList={imageList} />
-      <div id="controlContainer" className="slider__control-box">
-        <SliderControls />
+  return (imageList.length === 0)
+    ? (
+      <div style={{ width: '100%', height: '100%' }} className={`slider ${className}`}>
+        <Spinner />
       </div>
-    </div>
-  );
+    )
+    : (
+      <div className={`slider ${className}`}>
+        <SliderImages imageList={imageList} />
+        <div id="controlContainer" className="slider__control-box">
+          <SliderControls />
+        </div>
+      </div>
+    );
 };
 
 export default SliderComponent;

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { FC } from 'react';
 
 import CustomLink from './common/Link';
@@ -7,7 +8,7 @@ const Header : FC = () => (
   <header className="header" id="header">
     <div className="header__logo">
       <CustomLink href="/#">
-        <img src="/img/logo-mapeo.svg" alt="Logo mapeo" width="92" />
+        <Image src="/img/logo-mapeo.svg" alt="Logo mapeo" width={72} height={72} />
       </CustomLink>
     </div>
     <HeaderMenu />

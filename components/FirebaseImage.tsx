@@ -7,7 +7,7 @@ type Props = ImageProps
 
 const FirebaseImage : FC<Props> = (props : Props) => {
   const {
-    src,
+    src, width, height,
   } = props;
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentSrc, setSrc] = useState<string>(null);
@@ -33,7 +33,20 @@ const FirebaseImage : FC<Props> = (props : Props) => {
   return (
     <>
       {(isLoading)
-        ? <div className="spinner-container"><Spinner /></div>
+        ? (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: width || '100%',
+              height: height || '100%',
+            }}
+            className="spinner-container"
+          >
+            <Spinner />
+          </div>
+        )
         : (
           <>
             { (isImageLoading) ? <div className="spinner-container"><Spinner /></div> : null }

@@ -1,42 +1,28 @@
 import { FC } from 'react';
-import SliderWithSection from './Slider/withSection';
-import { SectionOfSliderProps } from './Slider/withSection/components/SliderWithSectionComponent';
+import { MapeoService } from '../lib/types';
+import SliderWithSection, { SliderContentProps } from './Slider/withSection';
 
-const sliderContent : SectionOfSliderProps[] = [
-  {
-    id: 0,
-    serviceTitle: 'Identidad de marca',
-    list: [
-      'Ideal para comunicar de forma gráfica la propuesta de valor de tu empresa.',
-      'Esto permitirá diferenciar a tu marca de la competencia y conectar gráficamente con tu cliente.',
-      'Es el primer paso para lograr posicionamiento en el mercado.',
-    ],
-    image: {
-      src: '/img/soluciones.png',
-      alt: 'soluciones',
-      width: 600,
-    },
-    listClassName: 'soluciones__list',
-  },
-  {
-    id: 1,
-    serviceTitle: 'Identidad de marca 2',
-    list: [
-      'Ideal para comunicar de forma gráfica la propuesta de valor de tu empresa.',
-      'Esto permitirá diferenciar a tu marca de la competencia y conectar gráficamente con tu cliente.',
-      'Es el primer paso para lograr posicionamiento en el mercado.',
-    ],
-    image: {
-      src: '/img/soluciones.png',
-      alt: 'soluciones2',
-      width: 600,
-    },
-  },
-];
+type Props = {
+  services: MapeoService[],
+}
 
-const SolutionsMarketing : FC = () => (
+const mapServicesToSliderContent = (
+  services: MapeoService[],
+) : SliderContentProps[] => services.map((service, index) => ({
+  id: index,
+  serviceTitle: service.name,
+  list: service.description,
+  image: {
+    src: service.imageUrl,
+    alt: service.name,
+    width: 600,
+    height: 440,
+  },
+}));
+
+const SolutionsMarketing : FC<Props> = ({ services } : Props) => (
   <SliderWithSection
-    sliderContentList={sliderContent}
+    sliderContentList={mapServicesToSliderContent(services)}
     className="soluciones soluciones--purple"
     titleNode={(
       <div className="soluciones__title appear_left">

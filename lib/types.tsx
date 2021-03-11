@@ -30,3 +30,11 @@ export type CustomerStorie = {
   message: string,
   names: string,
 }
+
+export type MapeoService = {
+  id?: string,
+  type: 'marketing' | 'colaboradores',
+  name: string,
+  imageUrl: string,
+  description: string[],
+}

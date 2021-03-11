@@ -23,6 +23,9 @@
       grid-area: title;
     }
   }
+  @media screen and (max-width: $breakpoint-desktop) {
+    height: auto;
+  }
   @media screen and (max-width: $breakpoint-laptop) {
     display: flex;
     min-height: 0;
