@@ -4,7 +4,7 @@ import MapeoCircle from './MapeoCircle';
 
 const AboutUs : FC = () => (
   <Section
-    gridType={GridType.normal}
+    gridType={GridType.reversable}
     className="about-us"
     targetId="nosotros"
     firstColumn={

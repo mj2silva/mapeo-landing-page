@@ -29,7 +29,7 @@ const Presentation : FC = () => {
   }, []);
   return (
     <Section
-      gridType={GridType.reversable}
+      gridType={GridType.normal}
       className="presentation"
       firstColumn={(
         <div className="presentation__call-to-action">

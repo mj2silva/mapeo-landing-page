@@ -1,6 +1,6 @@
 .customer-stories {
   position: relative;
-  min-height: calc(100vh - #{$headerHeight});
+  height: calc(100vh - #{$headerHeight});
   &__title {
     font-size: 1.5rem;
     display: flex;
@@ -19,12 +19,14 @@
     max-width: 80%;
     font-family: $gilroy;
     &-title {
-      font-size: 1.7rem;
+      height: 10rem;
       margin: 2rem 0;
+      display: flex;
+      align-items: center;
       & h2 {
         position: relative;
         display: inline;
-        font-size: 2rem;
+        font-size: 1.55rem;
         &::before {
           content: "\"";
           font-style: italic;
@@ -180,6 +182,7 @@
 
   @media screen and (max-width: $breakpoint-laptop) {
     min-height: 0;
+    height: 70rem;
     justify-content: center;
     &__content {
       display: flex;
@@ -190,11 +193,13 @@
       max-width: 70%;
       text-align: center;
       margin: 0 auto;
-      height: 34rem;
+      height: 38rem;
       &-title {
+        height: 25rem;
         & h2 {
           &::before {
             left: -1rem;
+            position: relative;
           }
         }
       }
