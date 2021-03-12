@@ -27,40 +27,40 @@ const ContactForm : FC = () => {
   const handleSubmit : FormEventHandler = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-    const isCompanyValid = await checkCompanyValid(formValues.company);
-    const isPhoneValid = formValues.phoneNumber.match(new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/));
-    if (isCompanyValid && isPhoneValid) {
-      setErrors({
-        ...errors,
-        company: null,
-      });
-      try {
+    try {
+      const isCompanyValid = await checkCompanyValid(formValues.company);
+      const isPhoneValid = formValues.phoneNumber.match(new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/));
+      if (isCompanyValid && isPhoneValid) {
+        setErrors({
+          ...errors,
+          company: null,
+        });
         setIsSubmitting(true);
         await createNewMeeting(formValues);
         setSuccessSubmit(true);
         setIsSubmitting(false);
-      } catch (e) {
-        setSuccessSubmit(false);
+      } else {
         setIsSubmitting(false);
-        setErrors({
-          ...errors,
-          form: `Error al enviar el formulario: ${e.message}`,
-        });
+        if (!isCompanyValid) {
+          setErrors({
+            ...errors,
+            company: 'Tu empresa ya ha sido registrada, si deseas más información puedes comunicarte con nosotros a través de nuestro WhatsApp',
+          });
+        }
+        if (!isPhoneValid) {
+          setErrors({
+            ...errors,
+            phoneNumber: 'El número de teléfono ingresado no es válido',
+          });
+        }
       }
-    } else {
+    } catch (e) {
+      setSuccessSubmit(false);
       setIsSubmitting(false);
-      if (!isCompanyValid) {
-        setErrors({
-          ...errors,
-          company: 'Tu empresa ya ha sido registrada, si deseas más información puedes comunicarte con nosotros a través de nuestro WhatsApp',
-        });
-      }
-      if (!isPhoneValid) {
-        setErrors({
-          ...errors,
-          phoneNumber: 'El número de teléfono ingresado no es válido',
-        });
-      }
+      setErrors({
+        ...errors,
+        form: `Error al enviar el formulario: ${e.message}`,
+      });
     }
   };
   const handleInputChange : ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -79,15 +79,19 @@ const ContactForm : FC = () => {
       (successSubmit)
         ? (
           <div className="schedule-meeting__contact">
-            <FontAwesomeIcon icon={faCheckCircle} />
+            <FontAwesomeIcon className="schedule-meeting__contact-success-icon" icon={faCheckCircle} />
+            <p className="schedule-meeting__contact-success-message">¡Genial! Hemos recibido tu solicitud y nos pondremos en contacto contigo en breve.</p>
           </div>
         )
         : (
           <div className="schedule-meeting__contact">
             <form onSubmit={handleSubmit} className="schedule-meeting__form">
-              <label htmlFor="names">
-                Nombres y apellidos
+              <label className="schedule-meeting__element" htmlFor="names">
+                <span className="schedule-meeting__input-text">
+                  Nombres y apellidos
+                </span>
                 <input
+                  placeholder="Nombres y apellidos"
                   required
                   onChange={handleInputChange}
                   className="schedule-meeting__input"
@@ -97,33 +101,42 @@ const ContactForm : FC = () => {
                 />
                 { errors.names ? <div className="schedule-meeting__form-error">{errors.names}</div> : null }
               </label>
-              <label htmlFor="email">
-                Email
+              <label className="schedule-meeting__element schedule-meeting__element--medium" htmlFor="email">
+                <span className="schedule-meeting__input-text">
+                  Email
+                </span>
                 <input
+                  placeholder="Email"
                   required
                   onChange={handleInputChange}
-                  className="schedule-meeting__input--medium"
+                  className="schedule-meeting__input"
                   type="email"
                   name="email"
                   value={formValues.email}
                 />
                 { errors.email ? <div className="schedule-meeting__form-error">errors.email</div> : null }
               </label>
-              <label htmlFor="phoneNumber">
-                Celular
+              <label className="schedule-meeting__element schedule-meeting__element--medium" htmlFor="phoneNumber">
+                <span className="schedule-meeting__input-text">
+                  Celular
+                </span>
                 <input
+                  placeholder="Celular"
                   required
                   onChange={handleInputChange}
-                  className="schedule-meeting__input--medium"
+                  className="schedule-meeting__input"
                   type="tel"
                   name="phoneNumber"
                   value={formValues.phoneNumber}
                 />
                 { errors.phoneNumber ? <div className="schedule-meeting__form-error">{errors.phoneNumber}</div> : null }
               </label>
-              <label htmlFor="company">
-                Empresa
+              <label className="schedule-meeting__element" htmlFor="company">
+                <span className="schedule-meeting__input-text">
+                  Empresa
+                </span>
                 <input
+                  placeholder="Empresa"
                   required
                   onChange={handleInputChange}
                   className="schedule-meeting__input"
