@@ -83,7 +83,7 @@ const SliderWithSectionComponent : FC<SliderWithSectionProps> = (
   return (currentSlider) ? (
     <Section
       className={className}
-      gridType={GridType.reversableWithTitle}
+      gridType={GridType.withTitle}
       title={title}
       targetId={targetId}
       firstColumn={(

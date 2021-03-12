@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/storage';
 import {
-  CustomerStorie, MapeoService, PortfolioElement, PortfolioTag,
+  CustomerStorie, MapeoService, MeetingInfo, PortfolioElement, PortfolioTag,
 } from './types';
 
 // Configuración de la aplicación con firebase
@@ -134,6 +134,28 @@ const getSliderImageUrls = async () : Promise<firebase.storage.Reference[]> => {
   return listOfFiles.items;
 };
 
+const createNewMeeting = async (meetingInfo : MeetingInfo) : Promise<void> => {
+  const meetingsRef = firestore.collection('reunionesProgramadas');
+  const meeting = {
+    nombres: meetingInfo.names,
+    email: meetingInfo.email,
+    empresa: meetingInfo.company,
+    telefono: meetingInfo.phoneNumber,
+  };
+  const meetingDoc = meetingsRef.doc();
+  const companyDoc = firestore.doc(`empresas/${meeting.empresa}`);
+  const batch = firestore.batch();
+  batch.set(meetingDoc, meeting);
+  batch.set(companyDoc, { meetingId: meetingDoc.id });
+  await batch.commit();
+};
+
+const checkCompanyValid = async (company : string) : Promise<boolean> => {
+  const ref = firestore.doc(`empresas/${company}`);
+  const { exists } = await ref.get();
+  return !exists;
+};
+
 export {
   getPortfolioItems,
   getMapeoServices,
@@ -143,4 +165,6 @@ export {
   getCustomerStories,
   loadFirebaseImage,
   getSliderImageUrls,
+  createNewMeeting,
+  checkCompanyValid,
 };
