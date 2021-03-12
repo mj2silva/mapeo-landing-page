@@ -8,8 +8,8 @@ const CallToAction : FC = () => (
         <h2>¿Tienes claro por dónde empezar?</h2>
       </div>
       <div className="callToAction__links">
-        <a className="button callToAction__link callToAction__link--blue appear_left" href="#soluciones">Si, quiero ver las soluciones</a>
-        <a className="button callToAction__link callToAction__link--violet appear_right" href="#guia">Aún no, prefiero que me guíen</a>
+        <a className="button callToAction__link callToAction__link--blue appear_left" href="#marketing">Si, quiero ver las soluciones</a>
+        <a className="button callToAction__link callToAction__link--violet appear_right" href="#primer-mapeo">Aún no, prefiero que me guíen</a>
       </div>
     </div>
   </section>

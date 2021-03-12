@@ -20,20 +20,20 @@ const mapServicesToSliderContent = (
   },
 }));
 
-const SolutionsMarketing : FC<Props> = ({ services } : Props) => (
+const SolutionsMarketing : FC<Props> = ({ services }: Props) => (
   <SliderWithSection
     sliderContentList={mapServicesToSliderContent(services)}
-    className="soluciones soluciones--purple"
+    className="soluciones soluciones--skyblue"
     titleNode={(
-      <div className="soluciones__title appear_left">
+      <div className="soluciones__title appear_right">
         <h1>
           Soluciones para conquistar
           {' '}
-          <span>&#183; a tus colaboradores &#183;</span>
+          <span>&#183; a tus clientes &#183;</span>
         </h1>
       </div>
     )}
-    targetId="personas"
+    targetId="marketing"
   />
 );
 

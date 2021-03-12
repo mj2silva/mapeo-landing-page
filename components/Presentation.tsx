@@ -40,7 +40,7 @@ const Presentation : FC = () => {
             </span>
             MÁS CLIENTES Y COLABORADORES!
           </div>
-          <a href="#conversemos" className="button presentation__button">Conversemos</a>
+          <a href="#primer-mapeo" className="button presentation__button">Conversemos</a>
         </div>
       )}
       secondColumn={(

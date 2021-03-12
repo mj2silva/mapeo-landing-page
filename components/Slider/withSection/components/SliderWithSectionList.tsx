@@ -29,7 +29,7 @@ const SliderWithSectionList : FC<SectionListProps> = (
         <h2>{serviceTitle}</h2>
       </div>
       <ListOfSolutions items={list} className="soluciones__list-items" />
-      <Link href="#agendar">
+      <Link href="#primer-mapeo">
         <a className="button soluciones__button-agendar">
           Agendar una asesoría gratuita
         </a>

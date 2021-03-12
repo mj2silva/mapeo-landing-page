@@ -68,11 +68,11 @@ export default function Home(props : Props) : ReactElement {
       <VisibilitySensor onChange={onElementInvisibleGenerator('call-to-action', setCurrentVisible)}>
         <CallToAction />
       </VisibilitySensor>
-      <VisibilitySensor onChange={onElementInvisibleGenerator('personas', setCurrentVisible)}>
-        <SolutionsPersons services={personsMapeoServices} />
-      </VisibilitySensor>
       <VisibilitySensor onChange={onElementInvisibleGenerator('marketing', setCurrentVisible)}>
         <SolutionsMarketing services={marketingMapeoServices} />
+      </VisibilitySensor>
+      <VisibilitySensor onChange={onElementInvisibleGenerator('personas', setCurrentVisible)}>
+        <SolutionsPersons services={personsMapeoServices} />
       </VisibilitySensor>
       <VisibilitySensor
         onChange={onElementInvisibleGenerator('portafolio', setCurrentVisible)}
