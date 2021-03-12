@@ -14,7 +14,7 @@ const SliderComponent : FC<SliderProps> = (props : SliderProps) => {
   }, [imageList, setTotalPages]);
   return (imageList.length === 0)
     ? (
-      <div style={{ width: '100%', height: '100%' }} className={`slider ${className}`}>
+      <div className={`slider ${className}`}>
         <Spinner />
       </div>
     )

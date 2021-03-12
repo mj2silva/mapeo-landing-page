@@ -34,6 +34,8 @@ const ContactForm : FC = () => {
         setErrors({
           ...errors,
           company: null,
+          phoneNumber: null,
+          form: null,
         });
         setIsSubmitting(true);
         await createNewMeeting(formValues);
@@ -58,7 +60,10 @@ const ContactForm : FC = () => {
       setSuccessSubmit(false);
       setIsSubmitting(false);
       setErrors({
-        ...errors,
+        names: null,
+        email: null,
+        phoneNumber: null,
+        company: null,
         form: `Error al enviar el formulario: ${e.message}`,
       });
     }
@@ -146,7 +151,15 @@ const ContactForm : FC = () => {
                 />
                 { errors.company ? <div className="schedule-meeting__form-error">{errors.company}</div> : null }
               </label>
-              { errors.form ? <div className="schedule-meeting__form-error--form">{errors.form}</div> : null }
+              { errors.form
+                ? (
+                  <div
+                    className="schedule-meeting__form-error schedule-meeting__form-error--form"
+                  >
+                    {errors.form}
+                  </div>
+                )
+                : null }
               <button type="submit" disabled={isSubmitting} className="button schedule-meeting__button">
                 Agendar una reunión aquí
               </button>
