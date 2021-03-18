@@ -1,4 +1,3 @@
-import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import { FC, ReactNode } from 'react';
 import Footer from './Footer';
