@@ -15,6 +15,8 @@ const FirebaseImage : FC<Props> = (props : Props) => {
     () => {
       const loadImages = async () : Promise<void> => {
         setIsLoading(true);
+        console.log({ props });
+
         try {
           const imageUrl = await loadFirebaseImage(src);
           setSrc(imageUrl);

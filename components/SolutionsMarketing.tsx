@@ -15,8 +15,8 @@ const mapServicesToSliderContent = (
   image: {
     src: service.imageUrl,
     alt: service.name,
-    width: 600,
-    height: 440,
+    width: 720,
+    height: 528,
   },
 }));
 
