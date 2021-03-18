@@ -13,7 +13,7 @@ const AboutUs : FC = () => (
     secondColumn={(
       <div className="about-us__content">
         <div className="appear_right about-us__title">
-          <h1>Mapeo existe...</h1>
+          <h2>Mapeo existe...</h2>
         </div>
         <div className="appear_right about-us__parragraph">
           <p>

@@ -26,11 +26,11 @@ const SolutionsMarketing : FC<Props> = ({ services }: Props) => (
     className="soluciones soluciones--skyblue"
     titleNode={(
       <div className="soluciones__title appear_right">
-        <h1>
+        <h2>
           Soluciones para conquistar
           {' '}
           <span>&#183; a tus clientes &#183;</span>
-        </h1>
+        </h2>
       </div>
     )}
     targetId="marketing"
