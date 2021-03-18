@@ -13,6 +13,7 @@ const useSlider = () : SliderContextHookType => {
     totalPages,
     setTotalPages,
     cancelInterval,
+    startInterval,
   } = useContext(SliderContext);
 
   return {
@@ -23,6 +24,7 @@ const useSlider = () : SliderContextHookType => {
     totalPages,
     setTotalPages,
     cancelInterval,
+    startInterval,
   };
 };
 

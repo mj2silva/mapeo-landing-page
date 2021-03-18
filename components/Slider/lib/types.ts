@@ -7,12 +7,14 @@ export type SliderImageProps = {
   width?: number,
   height?: number,
   id?: string | number,
+  onImageReady?: () => void,
 };
 
 export type SliderProps = {
   imageList: SliderImageProps[],
   delay? : number,
   className?: string,
+  onImagesReady?: () => void,
 }
 
 export type SliderWithSectionProps = {
@@ -41,6 +43,7 @@ export type SliderContextHookType = {
   goToNextPage: () => void,
   goToPage: (number: number) => void,
   cancelInterval: () => void,
+  startInterval: () => void,
 }
 
 export type SliderControlsContextType = {

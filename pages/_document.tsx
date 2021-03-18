@@ -15,6 +15,10 @@ class MyDocument extends Document {
       <Html lang="es">
         <Head>
           <script defer src="/animations/menuResonsive.js" />
+          <meta property="og:image" content="/img/sharing-mapeo.png" />
+          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:width" content="1904" />
+          <meta property="og:image:height" content="942" />
         </Head>
         <body>
           <Main />

@@ -11,6 +11,7 @@ const ScheduleMeeting : FC = () => (
         <div className="schedule-meeting__title appear_left">
           <h1>
             ¡Tu primer Mapeo
+            {' '}
             <span>ES GRATIS!</span>
           </h1>
           <p>
