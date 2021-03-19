@@ -37,7 +37,7 @@
     max-height: 100%;
     padding: 0;
     border: none;
-    align-items: center;
+    align-items: flex-start;
     cursor: pointer;
     object-fit: fill;
     &:hover {
@@ -48,7 +48,11 @@
       }
     }
     &:hover &-gradient::after {
-      background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,87,151,0) 40%);
+      background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,87,151,0) 0%);
+    }
+    &:hover &-title {
+      opacity: 0;
+      transform: scale(1.2);
     }
     &-gradient {
       background: $darkblueGradient;
@@ -79,8 +83,9 @@
     &-title {
       z-index: 9;
       color: #ffffff;
-      font-size: 2rem;
-      margin: -80px 0 0 1rem;
+      font-size: 1.5rem;
+      margin: -40px 0 0 1rem;
+      transition-duration: 500ms;
     }
     &-description {
       z-index: 9;
