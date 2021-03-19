@@ -18,7 +18,7 @@ const Footer : FC = () => (
               <li id="email"><a href="mailto:hola@mapeo.pe">hola@mapeo.pe</a></li>
               <li id="phone"><a href="tel:+51981292611">+51 981 292 611</a></li>
               <li id="address1">
-                <a href="https://g.page/mapeo?share">
+                <a target="_blank" rel="noreferrer" href="https://g.page/mapeo?share">
                   Calle Los Jazmines 544,
                   <span>Urbanización California, Trujillo.</span>
                 </a>
