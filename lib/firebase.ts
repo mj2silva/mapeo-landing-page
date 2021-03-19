@@ -137,10 +137,12 @@ const getSliderImageUrls = async () : Promise<firebase.storage.Reference[]> => {
 const createNewMeeting = async (meetingInfo : MeetingInfo) : Promise<void> => {
   const meetingsRef = firestore.collection('reunionesProgramadas');
   const meeting = {
-    nombres: meetingInfo.names,
-    email: meetingInfo.email,
-    empresa: meetingInfo.company,
-    telefono: meetingInfo.phoneNumber,
+    nombres: meetingInfo.names.toUpperCase(),
+    email: meetingInfo.email.toUpperCase(),
+    empresa: meetingInfo.company.toUpperCase(),
+    telefono: meetingInfo.phoneNumber.toUpperCase(),
+    asunto: meetingInfo.subject.toUpperCase(),
+    fechaDeSolicitud: meetingInfo.date,
   };
   const meetingDoc = meetingsRef.doc();
   const companyDoc = firestore.doc(`empresas/${meeting.empresa}`);
