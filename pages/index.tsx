@@ -55,7 +55,7 @@ export default function Home(props : Props) : ReactElement {
   return (
     <>
       <Head>
-        <title>Mapeo</title>
+        <title>Mapeo | Marketing basado en personas</title>
         <script defer src="/animations/animateInViewport.js" />
         <script defer src="/animations/menuResonsive.js" />
       </Head>
