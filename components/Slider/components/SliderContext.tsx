@@ -26,6 +26,7 @@ const SliderProvider : FC<Props> = ({ children, delay, transitionAuto } : Props)
     totalPages,
     setTotalPages,
     cancelInterval,
+    startInterval,
   } = useSliderContext({ delay, transitionAuto });
 
   return (
@@ -38,6 +39,7 @@ const SliderProvider : FC<Props> = ({ children, delay, transitionAuto } : Props)
         totalPages,
         setTotalPages,
         cancelInterval,
+        startInterval,
       }}
     >
       { children }

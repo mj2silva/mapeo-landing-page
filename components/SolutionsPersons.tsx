@@ -15,8 +15,8 @@ const mapServicesToSliderContent = (
   image: {
     src: service.imageUrl,
     alt: service.name,
-    width: 600,
-    height: 440,
+    width: 720,
+    height: 528,
   },
 }));
 
@@ -26,11 +26,11 @@ const SolutionsPersons : FC<Props> = ({ services } : Props) => (
     className="soluciones soluciones--purple"
     titleNode={(
       <div className="soluciones__title appear_left">
-        <h1>
+        <h2>
           Soluciones para conquistar
           {' '}
           <span>&#183; a tus colaboradores &#183;</span>
-        </h1>
+        </h2>
       </div>
     )}
     targetId="personas"

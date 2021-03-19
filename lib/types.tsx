@@ -45,4 +45,6 @@ export type MeetingInfo = {
   email:string,
   phoneNumber: string,
   company: string,
+  subject: string,
+  date: Date,
 }

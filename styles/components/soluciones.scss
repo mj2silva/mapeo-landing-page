@@ -10,7 +10,7 @@
     text-align: center;
     padding: 1rem 0;
     height: 100%;
-    & h1, & span {
+    & h2, & span {
       font-family: $gilroyBold;
       font-weight: bolder;
       display: block;
@@ -18,8 +18,7 @@
     }
   }
   &__image {
-    width: min-content;
-    width: 60%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;

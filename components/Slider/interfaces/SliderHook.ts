@@ -11,6 +11,7 @@ export type SliderContextReturn = {
   totalPages: number,
   currentPage: number,
   cancelInterval: () => void,
+  startInterval: () => void,
 }
 
 interface SliderHook {

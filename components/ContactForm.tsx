@@ -17,12 +17,15 @@ const ContactForm : FC = () => {
     phoneNumber: null,
     company: null,
     form: null,
+    subject: null,
   });
   const [formValues, setFormValues] = useState<MeetingInfo>({
     names: '',
     email: '',
     phoneNumber: '',
     company: '',
+    subject: '',
+    date: null,
   });
   const handleSubmit : FormEventHandler = async (event) => {
     event.preventDefault();
@@ -38,7 +41,10 @@ const ContactForm : FC = () => {
           form: null,
         });
         setIsSubmitting(true);
-        await createNewMeeting(formValues);
+        await createNewMeeting({
+          ...formValues,
+          date: new Date(),
+        });
         setSuccessSubmit(true);
         setIsSubmitting(false);
       } else {
@@ -64,11 +70,13 @@ const ContactForm : FC = () => {
         email: null,
         phoneNumber: null,
         company: null,
+        subject: null,
         form: `Error al enviar el formulario: ${e.message}`,
       });
     }
   };
-  const handleInputChange : ChangeEventHandler<HTMLInputElement> = (event) => {
+  const handleInputChange : ChangeEventHandler<
+  HTMLInputElement | HTMLTextAreaElement> = (event) => {
     setFormValues({
       ...formValues,
       [event.target.name]: event.target.value,
@@ -148,6 +156,21 @@ const ContactForm : FC = () => {
                   type="text"
                   name="company"
                   value={formValues.company}
+                />
+                { errors.company ? <div className="schedule-meeting__form-error">{errors.company}</div> : null }
+              </label>
+              <label className="schedule-meeting__element" htmlFor="subject">
+                <span className="schedule-meeting__input-text">
+                  Asunto
+                </span>
+                <textarea
+                  placeholder="¿Cuál es tu consulta?"
+                  required
+                  onChange={handleInputChange}
+                  className="schedule-meeting__input"
+                  rows={4}
+                  name="subject"
+                  value={formValues.subject}
                 />
                 { errors.company ? <div className="schedule-meeting__form-error">{errors.company}</div> : null }
               </label>

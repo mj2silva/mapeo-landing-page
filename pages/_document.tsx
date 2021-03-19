@@ -9,6 +9,7 @@ class MyDocument extends Document {
     const initialProps = await Document.getInitialProps(ctx);
     return { ...initialProps };
   }
+  // Open Graph & Twitter images need a full URL including domain
 
   render() : ReactElement {
     return (

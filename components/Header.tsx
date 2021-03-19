@@ -7,7 +7,7 @@ import HeaderMenu from './HeaderMenu';
 const Header : FC = () => (
   <header className="header" id="header">
     <div className="header__logo">
-      <CustomLink href="/#">
+      <CustomLink href="/">
         <Image src="/img/logo-mapeo.svg" alt="Logo mapeo" width={72} height={72} />
       </CustomLink>
     </div>

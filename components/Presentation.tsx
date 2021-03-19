@@ -33,13 +33,13 @@ const Presentation : FC = () => {
       className="presentation"
       firstColumn={(
         <div className="presentation__call-to-action">
-          <div className="presentation__message">
+          <h1 className="presentation__message">
             <span className="presentation__message--emphasis">
               ¡CONQUISTA
               {' '}
             </span>
             MÁS CLIENTES Y COLABORADORES!
-          </div>
+          </h1>
           <a href="#primer-mapeo" className="button presentation__button">Conversemos</a>
         </div>
       )}

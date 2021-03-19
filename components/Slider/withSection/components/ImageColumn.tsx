@@ -23,6 +23,7 @@ const ImageColumn : FC<SectionImageProps> = ({ className, image, id } : SectionI
         alt={image.alt}
         width={image.width}
         height={image.height}
+        objectFit="contain"
       />
     </div>
   );

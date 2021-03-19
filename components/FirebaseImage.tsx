@@ -11,7 +11,6 @@ const FirebaseImage : FC<Props> = (props : Props) => {
   } = props;
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentSrc, setSrc] = useState<string>(null);
-  const [isImageLoading, setIsImageLoading] = useState(true);
   useEffect(
     () => {
       const loadImages = async () : Promise<void> => {
@@ -25,7 +24,6 @@ const FirebaseImage : FC<Props> = (props : Props) => {
           setIsLoading(false);
         }
       };
-
       loadImages();
     },
     [src],
@@ -48,16 +46,11 @@ const FirebaseImage : FC<Props> = (props : Props) => {
           </div>
         )
         : (
-          <>
-            { (isImageLoading) ? <div className="spinner-container"><Spinner /></div> : null }
-            <Image
+          <Image
               // eslint-disable-next-line react/jsx-props-no-spreading
-              {...props}
-              src={currentSrc}
-              hidden={isImageLoading}
-              onLoad={() => setIsImageLoading(false)}
-            />
-          </>
+            {...props}
+            src={currentSrc}
+          />
         )}
     </>
   );

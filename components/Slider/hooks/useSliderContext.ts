@@ -30,6 +30,21 @@ const useSliderContext : SliderHook = (props) => {
     else setCurrentPage(currentPage - 1);
   }, [currentPage, totalPages]);
 
+  const startInterval = useCallback(() : void => {
+    if (transitionAuto && !isIntervalActive) {
+      if (delay > 0) {
+        const interval = setTimeout(() => {
+          goToNextPage();
+          setIsIntervalActive(false);
+        }, delay);
+        setCurrentInterval(interval);
+        setIsIntervalActive(true);
+      } else {
+        throw Error('El delay debe ser mayor de 0');
+      }
+    }
+  }, [transitionAuto, goToNextPage, delay, isIntervalActive]);
+
   useEffect(
     () => {
       if (transitionAuto && !isIntervalActive) {
@@ -48,10 +63,10 @@ const useSliderContext : SliderHook = (props) => {
     [transitionAuto, currentPage, goToNextPage, delay, isIntervalActive],
   );
 
-  const cancelInterval = () : void => {
+  const cancelInterval = useCallback(() : void => {
     setIsIntervalActive(false);
     clearInterval(currentInterval);
-  };
+  }, [currentInterval]);
 
   return {
     goToPrevPage,
@@ -61,6 +76,7 @@ const useSliderContext : SliderHook = (props) => {
     totalPages,
     setTotalPages,
     cancelInterval,
+    startInterval,
   };
 };
 

@@ -88,10 +88,10 @@ const CustomerStories : FC<Props> = ({ stories } : Props) => (
     targetId="historias"
     titleNode={(
       <div className="customer-stories__title">
-        <h1>
+        <h2>
           Nuestros clientes
           <span>&#183; conquistadores &#183;</span>
-        </h1>
+        </h2>
       </div>
     )}
     controlsComponent={<CustomerStoriesControls />}

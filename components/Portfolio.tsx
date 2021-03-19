@@ -11,10 +11,10 @@ const Portfolio : FC<PortfolioProps> = (props : PortfolioProps) => {
     <section className="portfolio" id="portfolio">
       <aside className="target" id="portafolio" />
       <div className="portfolio__title">
-        <h1>
+        <h2>
           Soluciones aplicadas en
           <span>&#183; nuestros clientes &#183;</span>
-        </h1>
+        </h2>
       </div>
       <div className="portfolio__list">
         { items.slice(0, 8).map((item, index) => (
