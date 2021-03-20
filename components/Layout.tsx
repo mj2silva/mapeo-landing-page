@@ -11,8 +11,7 @@ type Props = {
 const Layout : FC<Props> = ({ children } : Props) => (
   <PageProvider>
     <Head>
-
-      <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+      <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
       <meta name="description" content="Marketing & People Management aplicando ejes claves para el desarrollo empresarial como Business Intelligence (BI) y Business Management (BM). El producto de fusionar estos campos fue la formación de la consigna: Por marcas más humanas y con resultados inmediatos de gran impacto. Trujillo - Perú" />
       <meta property="og:image" content="https://mapeo.pe/img/mapeo-sharing.png" />
       <meta property="og:image:type" content="image/png" />
