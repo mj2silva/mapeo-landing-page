@@ -26,7 +26,7 @@
       & h2 {
         position: relative;
         display: inline;
-        font-size: 1.55rem;
+        font-size: 2rem;
         &::before {
           content: "\"";
           font-style: italic;
@@ -149,10 +149,12 @@
   }
 
   @media screen and (max-width: $breakpoint-desktop) {
+    min-height: 0;
+    height: auto;
     &__content {
       &-title {
         & h2 {
-          font-size: 2.2rem;
+          font-size: 1.5rem;
         }
       }
       &-data {
@@ -181,7 +183,7 @@
   }
 
   @media screen and (max-width: $breakpoint-laptop) {
-    min-height: 0;
+    
     height: 70rem;
     justify-content: center;
     &__content {
@@ -207,12 +209,15 @@
   }
 
   @media screen and (max-width: $breakpoint-mobile){
+    height: 60rem;
     &__content {
         max-width: 70%;
         text-align: center;
+        height: 25rem;
       &-title {
+        height: 15rem;
         & h2 {
-          font-size: 1.6rem;
+          font-size: 1.3rem;
         }
       }
       &-data {
