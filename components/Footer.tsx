@@ -15,13 +15,13 @@ const Footer : FC = () => (
           </div>
           <div className="footer__contact-info">
             <ul>
-              <li id="email"><a href="mailto:hola@mapeo.pe">hola@mapeo.pe</a></li>
-              <li id="phone"><a href="tel:+51981292611">+51 981 292 611</a></li>
+              <li id="email"><CustomLink href="mailto:hola@mapeo.pe">hola@mapeo.pe</CustomLink></li>
+              <li id="phone"><CustomLink href="tel:+51981292611">+51 981 292 611</CustomLink></li>
               <li id="address1">
-                <a target="_blank" rel="noreferrer" href="https://g.page/mapeo?share">
+                <CustomLink isBlank href="https://g.page/mapeo?share">
                   Calle Los Jazmines 544,
                   <span>Urbanización California, Trujillo.</span>
-                </a>
+                </CustomLink>
               </li>
               <li id="address2">
                 Mz. H Alto De La Luna

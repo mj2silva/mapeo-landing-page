@@ -1,16 +1,16 @@
 import {
   FC, ReactNode, useEffect, useState,
 } from 'react';
+import Image from 'next/image';
 import { CustomerStorie } from '../lib/types';
 import { GridType } from './common/Section';
-import FirebaseImage from './FirebaseImage';
 import useSlider from './Slider/hooks/useSlider';
 import { SectionWithSlider } from './Slider/withSection';
 
 const renderFirstColumn = (customerStories : CustomerStorie[]) : ReactNode[] => (
   customerStories.map((storie) => (
     <div className="customer-stories__picture">
-      <FirebaseImage
+      <Image
         src={storie.photoUrl}
         alt={storie.names}
         width={500}

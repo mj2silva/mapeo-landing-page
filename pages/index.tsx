@@ -12,10 +12,13 @@ import ScheduleMeeting from '../components/ScheduleMeeting';
 import SolutionsMarketing from '../components/SolutionsMarketing';
 import SolutionsPersons from '../components/SolutionsPersons';
 import usePage from '../hooks/usePage';
-import { getCustomerStories, getMapeoServices, getPortfolioItemsWithFirebaseUrl } from '../lib/firebase';
-import { CustomerStorie, MapeoService } from '../lib/types';
+import {
+  getCustomerStories, getMapeoServices, getPortfolioItemsWithFirebaseUrl, getStaff,
+} from '../lib/firebase';
+import { CustomerStorie, MapeoService, StaffMember } from '../lib/types';
 
 export const getStaticProps : GetStaticProps = async () => {
+  const staff = await getStaff();
   const portafolioItems = await getPortfolioItemsWithFirebaseUrl();
   const customerStories = await getCustomerStories();
   const marketingMapeoServices = await getMapeoServices('marketing');
@@ -26,6 +29,7 @@ export const getStaticProps : GetStaticProps = async () => {
       customerStories,
       marketingMapeoServices,
       personsMapeoServices,
+      staff,
     },
   };
 };
@@ -35,6 +39,7 @@ type Props = {
   customerStories: CustomerStorie[];
   marketingMapeoServices: MapeoService[];
   personsMapeoServices: MapeoService[];
+  staff: StaffMember[],
 };
 
 const onElementInvisibleGenerator = (
@@ -50,6 +55,7 @@ export default function Home(props : Props) : ReactElement {
     customerStories,
     marketingMapeoServices,
     personsMapeoServices,
+    staff,
   } = props;
 
   return (
@@ -60,7 +66,7 @@ export default function Home(props : Props) : ReactElement {
         <script defer src="/animations/menuResonsive.js" />
       </Head>
       <VisibilitySensor onChange={onElementInvisibleGenerator('presentation', setCurrentVisible)}>
-        <Presentation />
+        <Presentation staffData={staff} />
       </VisibilitySensor>
       <VisibilitySensor onChange={onElementInvisibleGenerator('nosotros', setCurrentVisible)}>
         <AboutUs />

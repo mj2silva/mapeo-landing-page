@@ -17,7 +17,7 @@ const CustomLink : FC<Props> = ({
     <a
       onClick={onClick}
       className={className}
-      role="button"
+      role={(onClick ? 'button' : null)}
       tabIndex={tabIndex}
       onKeyUp={onClick}
       target={(isBlank) ? '_blank' : ''}

@@ -34,7 +34,9 @@
     display: flex;
     flex-direction: column;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 30rem;
+    width: 100%;
+    height: 60vh;
     padding: 0;
     border: none;
     align-items: flex-start;
@@ -48,7 +50,7 @@
       }
     }
     &:hover &-gradient::after {
-      background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,87,151,0) 0%);
+      opacity: 0;;
     }
     &:hover &-title {
       opacity: 0;
@@ -61,8 +63,10 @@
       max-width: 100%;
       height: 100%;
       object-fit: cover;
+      width: 100%;
     }
     &-gradient::after {
+      transition-duration: 1000ms;
       content: '';
       position: absolute;
       left: 0;
@@ -71,7 +75,6 @@
       height: 100%;
       display: inline-block;
       background: $darkblueGradient;
-      transition-duration: 500ms;
 
     }
     & img {
