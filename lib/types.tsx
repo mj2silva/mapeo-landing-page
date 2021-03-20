@@ -48,3 +48,9 @@ export type MeetingInfo = {
   subject: string,
   date: Date,
 }
+
+export type StaffMember = {
+  id?: string,
+  name: string,
+  photoUrl: string,
+}

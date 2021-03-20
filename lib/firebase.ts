@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/storage';
 import {
-  CustomerStorie, MapeoService, MeetingInfo, PortfolioElement, PortfolioTag,
+  CustomerStorie, MapeoService, MeetingInfo, PortfolioElement, PortfolioTag, StaffMember,
 } from './types';
 
 // Configuración de la aplicación con firebase
@@ -128,6 +128,21 @@ const loadFirebaseImage = async (firebaseImageUrl : string) : Promise<string> =>
   return imageDownloadUrl;
 };
 
+const getStaff = async () : Promise<StaffMember[]> => {
+  const staffRef = firestore.collection('colaboradores');
+  const staff : StaffMember[] = [];
+  const data = await staffRef.get();
+  data.forEach((item) => {
+    const itemData = item.data();
+    staff.push({
+      id: item.id,
+      name: itemData.nombre,
+      photoUrl: itemData.fotoUrl,
+    });
+  });
+  return staff;
+};
+
 const getSliderImageUrls = async () : Promise<firebase.storage.Reference[]> => {
   const filesListRef = storage.ref().child('pagina-principal/slider-principal');
   const listOfFiles = await filesListRef.listAll();
@@ -169,4 +184,5 @@ export {
   getSliderImageUrls,
   createNewMeeting,
   checkCompanyValid,
+  getStaff,
 };

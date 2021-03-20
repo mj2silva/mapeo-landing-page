@@ -2,31 +2,26 @@ import { FC, useEffect, useState } from 'react';
 import Slider from './Slider';
 import Section, { GridType } from './common/Section';
 import { SliderImageProps } from './Slider/lib/types';
+import { StaffMember } from '../lib/types';
 
-const getImages = async () : Promise<SliderImageProps[]> => {
-  const { storage } = await import('../lib/firebase');
-  const filesListRef = storage.ref().child('pagina-principal/slider-principal');
-  const listOfFiles = await filesListRef.listAll();
-  const srcList = await Promise.all(listOfFiles.items.map((item) => item.getDownloadURL()));
-  const imageList = listOfFiles.items.map((item, index) => ({
-    src: srcList[index],
-    width: 500,
-    height: 500,
-    alt: item.name,
-    id: index,
-  }));
-  return imageList;
-};
+type Props = {
+  staffData: StaffMember[];
+}
 
-const Presentation : FC = () => {
+const Presentation : FC<Props> = (props : Props) => {
   const [imageList, setImageList] = useState<SliderImageProps[]>([]);
+  const { staffData } = props;
 
   useEffect(() => {
-    const loadImages = async () : Promise<void> => {
-      setImageList(await getImages());
-    };
-    loadImages();
-  }, []);
+    setImageList(staffData.map((member, index) => ({
+      id: index,
+      src: member.photoUrl,
+      alt: member.name,
+      width: 500,
+      height: 500,
+    })));
+  }, [staffData]);
+
   return (
     <Section
       gridType={GridType.normal}

@@ -1,12 +1,12 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import {
   FC, MouseEvent, useEffect, useState,
 } from 'react';
 import Modal from 'react-modal';
 import { storage } from '../lib/firebase';
 import Spinner from './common/Spinner';
-import FirebaseImage from './FirebaseImage';
 
 export type PortfolioItemProps = {
   name: string,
@@ -66,7 +66,7 @@ const PortfolioItem : FC<PortfolioItemProps> = (props: PortfolioItemProps) => {
             >
               <Spinner />
             </div>
-          ) : <img src={currentImage} alt="portafolio 1" width="250px" /> }
+          ) : <Image src={currentImage} alt="portafolio 1" layout="fill" objectFit="cover" /> }
       </div>
       <div className="portfolio__item-title">{ name }</div>
       <div className="portfolio__item-description">{ description }</div>
@@ -81,7 +81,7 @@ const PortfolioItem : FC<PortfolioItemProps> = (props: PortfolioItemProps) => {
         <button className="Modal__close-button" type="button" onClick={closeModal}>
           <FontAwesomeIcon icon={faTimes} />
         </button>
-        <FirebaseImage
+        <Image
           src={imageUrl}
           alt={name}
           layout="fill"
