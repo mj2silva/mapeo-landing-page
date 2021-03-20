@@ -85,6 +85,7 @@ const CustomerStories : FC<Props> = ({ stories } : Props) => (
     className="customer-stories customer-stories--purple"
     sliderInClassName="slider__picture--active"
     sliderOutClassName="slider__picture--exiting slider__picture--exiting-section"
+    firstInClassName="slider__picture--exiting-no-anim"
     targetId="historias"
     titleNode={(
       <div className="customer-stories__title">

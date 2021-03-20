@@ -1,6 +1,6 @@
 .soluciones {
   position: relative;
-  min-height: calc(100vh - #{$headerHeight});
+  height: calc(100vh - #{$headerHeight});
   &__title {
     font-size: 1.3rem;
     display: flex;
@@ -33,6 +33,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
+    justify-content: center;
     &-items {
       height: 20rem;
       display: flex;

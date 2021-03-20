@@ -7,18 +7,24 @@ export type ColumnSliderProps = {
   pageNumber: number,
   sliderInClassName: string,
   sliderOutClassName: string,
-  children: ReactNode
+  children: ReactNode,
+  firstInClassName: string,
 }
 
 const ColumnSliderElement : FC<ColumnSliderProps> = ({
-  pageNumber, sliderInClassName, sliderOutClassName, children,
+  pageNumber, sliderInClassName, sliderOutClassName, children, firstInClassName,
 } : ColumnSliderProps) => {
-  const [currentClassName, setCurrentClassName] = useState<string>('');
+  const [currentClassName, setCurrentClassName] = useState<string>(firstInClassName);
   const { currentPage } = useSlider();
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   useEffect(() => {
-    if (pageNumber === currentPage) setCurrentClassName(sliderInClassName);
-    else setCurrentClassName(sliderOutClassName);
-  }, [pageNumber, currentPage, sliderInClassName, sliderOutClassName]);
+    if (pageNumber === currentPage) {
+      setCurrentClassName(sliderInClassName);
+      if (!isLoaded) setIsLoaded(true);
+    } else if (isLoaded) {
+      setCurrentClassName(sliderOutClassName);
+    }
+  }, [pageNumber, currentPage, sliderInClassName, sliderOutClassName, isLoaded]);
 
   return (
     <div className={currentClassName}>

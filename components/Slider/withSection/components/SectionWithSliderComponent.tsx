@@ -13,6 +13,7 @@ export type SectionWithSliderComponentProps = {
   sliderInClassName?: string,
   sliderOutClassName?: string,
   targetId?: string,
+  firstInClassName?: string,
 }
 
 const SectionWithSliderComponent : FC<SectionWithSliderComponentProps> = (
@@ -28,6 +29,7 @@ const SectionWithSliderComponent : FC<SectionWithSliderComponentProps> = (
     titleComponent,
     controlsComponent,
     targetId,
+    firstInClassName,
   } = props;
   const { setTotalPages } = useSlider();
   useEffect(() => {
@@ -44,6 +46,7 @@ const SectionWithSliderComponent : FC<SectionWithSliderComponentProps> = (
         <ColumnSlider
           elements={firstColumnElements}
           onExitClassName={sliderOutClassName}
+          firstInClassName={firstInClassName}
           className={sliderInClassName}
         />
       )}
@@ -52,6 +55,7 @@ const SectionWithSliderComponent : FC<SectionWithSliderComponentProps> = (
           elements={secondColumnElements}
           onExitClassName={sliderOutClassName}
           className={sliderInClassName}
+          firstInClassName={firstInClassName}
         />
       )}
     />

@@ -7,13 +7,18 @@ const SliderImage : FC<SliderImageProps> = (props : SliderImageProps) => {
   const {
     src, alt, width, height, id,
   } = props;
-  const [className, setClassName] = useState('');
+  const [className, setClassName] = useState('slider__picture--exiting-no-anim');
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const { currentPage } = useSlider();
 
   useEffect(() => {
-    if (currentPage === id) setClassName('slider__picture--active');
-    else setClassName('slider__picture--exiting');
-  }, [currentPage, id]);
+    if (currentPage === id) {
+      setClassName('slider__picture--active');
+      if (!isLoaded) setIsLoaded(true);
+    } else if (isLoaded) {
+      setClassName('slider__picture--exiting');
+    }
+  }, [currentPage, id, isLoaded]);
 
   return (
     <li key={id || src} className={`slider__picture ${className}`}>

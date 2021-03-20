@@ -7,10 +7,11 @@ export type ColumnSliderProps = {
   elements: ReactNode[],
   className?: string,
   onExitClassName?: string,
+  firstInClassName?: string,
 }
 
 const ColumnSlider : FC<ColumnSliderProps> = ({
-  elements, className, onExitClassName,
+  elements, className, onExitClassName, firstInClassName,
 } : ColumnSliderProps) => (
   <>
     { elements.map((element, index) => (
@@ -19,6 +20,7 @@ const ColumnSlider : FC<ColumnSliderProps> = ({
         pageNumber={index}
         sliderInClassName={className}
         sliderOutClassName={onExitClassName}
+        firstInClassName={firstInClassName}
       >
         { element }
       </ColumnSliderElement>

@@ -31,7 +31,7 @@ const ContactForm : FC = () => {
     event.preventDefault();
     setIsSubmitting(true);
     try {
-      const isCompanyValid = await checkCompanyValid(formValues.company);
+      const isCompanyValid = await checkCompanyValid(formValues.company.toUpperCase());
       const isPhoneValid = formValues.phoneNumber.match(new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/));
       if (isCompanyValid && isPhoneValid) {
         setErrors({
@@ -172,7 +172,7 @@ const ContactForm : FC = () => {
                   name="subject"
                   value={formValues.subject}
                 />
-                { errors.company ? <div className="schedule-meeting__form-error">{errors.company}</div> : null }
+                { errors.subject ? <div className="schedule-meeting__form-error">{errors.subject}</div> : null }
               </label>
               { errors.form
                 ? (
@@ -193,8 +193,3 @@ const ContactForm : FC = () => {
 };
 
 export default ContactForm;
-
-/* match /{document=**} {
-  allow read: if true;
-  allow write: if request.auth != null;
-} */

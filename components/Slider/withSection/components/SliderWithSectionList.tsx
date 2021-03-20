@@ -16,12 +16,17 @@ const SliderWithSectionList : FC<SectionListProps> = (
   } : SectionListProps,
 ) => {
   const { currentPage } = useSlider();
-  const [currentClassName, setCurrentClassname] = useState<string>('');
+  const [currentClassName, setCurrentClassname] = useState<string>('slider__picture--exiting-no-anim');
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    if (currentPage === id) setCurrentClassname('slider__picture--active');
-    else setCurrentClassname('slider__picture--exiting slider__picture--exiting-section');
-  }, [currentPage, id]);
+    if (currentPage === id) {
+      setCurrentClassname('slider__picture--active');
+      if (!isLoaded) setIsLoaded(true);
+    } else if (isLoaded) {
+      setCurrentClassname('slider__picture--exiting slider__picture--exiting-section');
+    }
+  }, [currentPage, id, isLoaded]);
 
   return (
     <div className={`soluciones__list ${className} ${currentClassName}`}>

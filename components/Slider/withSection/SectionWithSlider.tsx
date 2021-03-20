@@ -13,6 +13,7 @@ export type SectionWithSliderProps = {
   gridType?: GridType,
   sliderInClassName?: string,
   sliderOutClassName?: string,
+  firstInClassName?: string,
 }
 
 const SectionWithSlider : FC<SectionWithSliderProps> = (props: SectionWithSliderProps) => {
@@ -26,6 +27,7 @@ const SectionWithSlider : FC<SectionWithSliderProps> = (props: SectionWithSlider
     gridType,
     sliderInClassName,
     sliderOutClassName,
+    firstInClassName,
   } = props;
   return (
     <SliderProvider delay={4000} transitionAuto>
@@ -39,6 +41,7 @@ const SectionWithSlider : FC<SectionWithSliderProps> = (props: SectionWithSlider
         gridType={gridType || GridType.normal}
         sliderInClassName={sliderInClassName}
         sliderOutClassName={sliderOutClassName}
+        firstInClassName={firstInClassName}
       />
     </SliderProvider>
   );
