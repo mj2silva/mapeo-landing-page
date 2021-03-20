@@ -28,7 +28,7 @@ export const storage = firebase.storage();
  * @param itemsCount numero de items de portafolio a retornar (0 = todos)
  * @returns Un arreglo con los datos de cada item de portafolio
  */
-const getPortfolioItemsWithFirebaseUrl = async (
+const getPortfolioItems = async (
   itemsCount : number = 0,
 ) : Promise<PortfolioElement[]> => {
   const firebasePortafolioItems : PortfolioElement[] = [];
@@ -49,25 +49,6 @@ const getPortfolioItemsWithFirebaseUrl = async (
   });
 
   return firebasePortafolioItems;
-};
-
-const transformPortfolioItems = async (
-  portfolioWithFirebaseUrl : PortfolioElement[],
-) : Promise<PortfolioElement[]> => {
-  const imageUrls = await Promise.all(portfolioWithFirebaseUrl.map(
-    (item) => storage.refFromURL(item.imageUrl).getDownloadURL(),
-  ));
-  const portafolioItems = portfolioWithFirebaseUrl.map((item, index) => ({
-    ...item,
-    imageUrl: imageUrls[index],
-  }));
-  return portafolioItems;
-};
-
-const getPortfolioItems = async (itemsCount : number = 0) : Promise<PortfolioElement[]> => {
-  const firebasePortafolioItems = await getPortfolioItemsWithFirebaseUrl(itemsCount);
-  const portfolioItems = await transformPortfolioItems(firebasePortafolioItems);
-  return portfolioItems;
 };
 
 const getTagsForPortfolio = async () : Promise<PortfolioTag[]> => {
@@ -123,11 +104,6 @@ const getMapeoServices = async (type: 'marketing' | 'colaboradores') : Promise<M
   return mapeoServices;
 };
 
-const loadFirebaseImage = async (firebaseImageUrl : string) : Promise<string> => {
-  const imageDownloadUrl = await storage.refFromURL(firebaseImageUrl).getDownloadURL();
-  return imageDownloadUrl;
-};
-
 const getStaff = async () : Promise<StaffMember[]> => {
   const staffRef = firestore.collection('colaboradores');
   const staff : StaffMember[] = [];
@@ -141,12 +117,6 @@ const getStaff = async () : Promise<StaffMember[]> => {
     });
   });
   return staff;
-};
-
-const getSliderImageUrls = async () : Promise<firebase.storage.Reference[]> => {
-  const filesListRef = storage.ref().child('pagina-principal/slider-principal');
-  const listOfFiles = await filesListRef.listAll();
-  return listOfFiles.items;
 };
 
 const createNewMeeting = async (meetingInfo : MeetingInfo) : Promise<void> => {
@@ -176,12 +146,8 @@ const checkCompanyValid = async (company : string) : Promise<boolean> => {
 export {
   getPortfolioItems,
   getMapeoServices,
-  transformPortfolioItems,
-  getPortfolioItemsWithFirebaseUrl,
   getTagsForPortfolio,
   getCustomerStories,
-  loadFirebaseImage,
-  getSliderImageUrls,
   createNewMeeting,
   checkCompanyValid,
   getStaff,

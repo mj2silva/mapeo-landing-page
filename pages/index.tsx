@@ -13,13 +13,13 @@ import SolutionsMarketing from '../components/SolutionsMarketing';
 import SolutionsPersons from '../components/SolutionsPersons';
 import usePage from '../hooks/usePage';
 import {
-  getCustomerStories, getMapeoServices, getPortfolioItemsWithFirebaseUrl, getStaff,
+  getCustomerStories, getMapeoServices, getPortfolioItems, getStaff,
 } from '../lib/firebase';
 import { CustomerStorie, MapeoService, StaffMember } from '../lib/types';
 
 export const getStaticProps : GetStaticProps = async () => {
   const staff = await getStaff();
-  const portafolioItems = await getPortfolioItemsWithFirebaseUrl();
+  const portafolioItems = await getPortfolioItems();
   const customerStories = await getCustomerStories();
   const marketingMapeoServices = await getMapeoServices('marketing');
   const personsMapeoServices = await getMapeoServices('colaboradores');
