@@ -29,6 +29,7 @@ const ContactForm : FC = () => {
   });
   const handleSubmit : FormEventHandler = async (event) => {
     event.preventDefault();
+    event.stopPropagation();
     setIsSubmitting(true);
     try {
       const isCompanyValid = await checkCompanyValid(formValues.company.toUpperCase());
