@@ -6,11 +6,11 @@ import PortfolioItem from '../components/PortfolioItem';
 import PortfolioTags from '../components/PortfolioTags';
 import ScheduleMeeting from '../components/ScheduleMeeting';
 import usePage from '../hooks/usePage';
-import { getPortfolioItemsWithFirebaseUrl, getTagsForPortfolio } from '../lib/firebase';
+import { getPortfolioItems, getTagsForPortfolio } from '../lib/firebase';
 import { PortfolioElement, PortfolioTag } from '../lib/types';
 
 export const getStaticProps : GetStaticProps = async () => {
-  const portafolioItems = await getPortfolioItemsWithFirebaseUrl();
+  const portafolioItems = await getPortfolioItems();
   const tags = await getTagsForPortfolio();
   return { props: { portafolioItems, tags } };
 };
