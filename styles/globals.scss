@@ -38,7 +38,6 @@
 html, body {
   min-height: 100%;
   height: 100%;
-  overflow: auto;
 }
 
 body {
@@ -73,6 +72,7 @@ button {
   z-index: -1;
   @media screen and (max-width: $breakpoint-mobile) {
     top: 0;
+    height: 0px;
   }
 }
 input[type="search"]::-webkit-search-decoration,
