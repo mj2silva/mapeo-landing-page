@@ -38,6 +38,7 @@
 html, body {
   min-height: 100%;
   height: 100%;
+  overflow: auto;
 }
 
 body {
@@ -48,7 +49,7 @@ body {
   overflow-x: hidden;
   width: 100vw;
   scroll-behavior: smooth;
-  position: absolute;
+  position: relative;
 }
 
 a {

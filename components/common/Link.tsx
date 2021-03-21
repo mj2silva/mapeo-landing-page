@@ -31,7 +31,7 @@ const CustomLink : FC<Props> = ({
 CustomLink.defaultProps = {
   className: null,
   onClick: null,
-  tabIndex: 1,
+  tabIndex: 0,
   isBlank: false,
 };
 

@@ -46,7 +46,7 @@ const HeaderMenu : FC = () => {
             className="navigation__item navigation__item--orange"
             activeClassName="navigation__item--active"
           >
-            <CustomLink href="/#nosotros" onClick={onClick} tabIndex={-1}>Nosotros</CustomLink>
+            <CustomLink href="/#nosotros" onClick={onClick} tabIndex={0}>Nosotros</CustomLink>
           </HeaderNavLink>
           <div className="navigation__dropdown">
             <HeaderNavDropDown
@@ -57,10 +57,10 @@ const HeaderMenu : FC = () => {
               text="Soluciones"
             >
               <li className="navigation__dropdown-item">
-                <CustomLink href="/#marketing" onClick={onClick} tabIndex={-1}>Marketing</CustomLink>
+                <CustomLink href="/#marketing" onClick={onClick} tabIndex={0}>Marketing</CustomLink>
               </li>
               <li className="navigation__dropdown-item">
-                <CustomLink href="/#personas" onClick={onClick} tabIndex={-1}>Personas</CustomLink>
+                <CustomLink href="/#personas" onClick={onClick} tabIndex={0}>Personas</CustomLink>
               </li>
             </HeaderNavDropDown>
           </div>
@@ -70,7 +70,7 @@ const HeaderMenu : FC = () => {
             className="navigation__item navigation__item--skyblue"
             activeClassName="navigation__item--active"
           >
-            <CustomLink href="/portafolio" onClick={onClick} tabIndex={-1}>Portafolio</CustomLink>
+            <CustomLink href="/portafolio" onClick={onClick} tabIndex={0}>Portafolio</CustomLink>
           </HeaderNavLink>
           <HeaderNavLink
             tags={['blog']}
@@ -81,7 +81,7 @@ const HeaderMenu : FC = () => {
             <CustomLink
               href={process.env.NEXT_PUBLIC_BLOG_URL}
               onClick={onClick}
-              tabIndex={-1}
+              tabIndex={0}
             >
               Blog
             </CustomLink>
@@ -92,7 +92,7 @@ const HeaderMenu : FC = () => {
             className="navigation__item navigation__item--violet"
             activeClassName="navigation__item--active"
           >
-            <CustomLink href="/#primer-mapeo" onClick={onClick} tabIndex={-1}>Tu primer Mapeo</CustomLink>
+            <CustomLink href="/#primer-mapeo" onClick={onClick} tabIndex={0}>Tu primer Mapeo</CustomLink>
           </HeaderNavLink>
         </ul>
       </div>

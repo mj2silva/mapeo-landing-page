@@ -93,6 +93,9 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    height: 100%;
+    box-sizing: border-box;
+    flex: 0 1 auto;
     &-error {
       color: #ff553f;
       font-size: .8rem;
