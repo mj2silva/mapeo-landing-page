@@ -1,6 +1,6 @@
 .soluciones {
   position: relative;
-  height: calc(100vh - #{$headerHeight});
+  min-height: calc(100vh - #{$headerHeight});
   &__title {
     font-size: 1.3rem;
     display: flex;
@@ -117,12 +117,14 @@
     }
     &--right {
       left: 2%;
+      z-index: 10;
       & i {
         right: 2%;
       }
     }
     &--left {
       right: 2%;
+      z-index: 10;
       & i {
         left: 2%;
       }
@@ -159,17 +161,7 @@
     height: auto;
     padding: 3rem 0;
     &__image {
-      max-width: 50%;
-    }
-    &__arrow {
-      &--right {
-          top: 25%;
-          bottom: initial;
-      }
-      &--left {
-          top: 25%;
-          bottom: initial;
-      }
+      max-width: 80%;
     }
     &__list {
       &-title {
