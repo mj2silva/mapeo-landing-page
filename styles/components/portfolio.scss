@@ -137,6 +137,7 @@
   @media screen and (max-width: $breakpoint-mobile){
     &__item {
       align-items: center;
+      min-height: 25rem;
       &-title {
         font-size: 2rem;
       }
