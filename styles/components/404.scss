@@ -1,0 +1,38 @@
+.error404 {
+  min-height: 100vh;
+  background-color: $darkBlue;
+  display: flex;
+  color: $white;
+  justify-content: center;
+  align-items: center;
+  background-image:
+    url("/img/slider-izquierda.png"),
+    url("/img/circulo-lineas-arriba.png"),
+    url("/img/derecha-slider.png")
+    ;
+  background-repeat: no-repeat;
+  background-position: left bottom, right top, right bottom;
+  background-size: 12%, 15%, 18%;
+  &__message {
+    width: 50%;
+    min-height: 50vh;
+  }
+  &__error {
+    color: $skyblue;
+    font-family: $gilroyBold;
+    font-size: 3.5rem;
+    margin: .5rem 0;
+  }
+  &__description {
+    font-family: $gilroy;
+    font-size: 2rem;
+    font-weight: 100;
+    margin: .5rem 0;
+  }
+  &__backlink {
+    color: $skyblueHover;
+    font-family: $gilroy;
+    font-weight: 100;
+    font-size: 1rem;
+  }
+}

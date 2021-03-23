@@ -1,36 +1,39 @@
 @import "./common/common.scss";
 
 // Commons
-@import "components/common/button.scss";
-@import "components/slider.scss";
+@import "./components/common/button.scss";
+@import "./components/slider.scss";
 @import "./components/section.scss";
 
 // Components
 
 // Landing
-@import "components/header.scss";
-@import "components/presentation.scss";
-@import "components/about-us.scss";
-@import "components/callToAction.scss";
-@import "components/soluciones.scss";
-@import "components/portfolio.scss";
-@import "components/customer-stories.scss";
-@import "components/schedule-meeting.scss";
-@import "components/footer.scss";
+@import "./components/header.scss";
+@import "./components/presentation.scss";
+@import "./components/about-us.scss";
+@import "./components/callToAction.scss";
+@import "./components/soluciones.scss";
+@import "./components/portfolio.scss";
+@import "./components/customer-stories.scss";
+@import "./components/schedule-meeting.scss";
+@import "./components/footer.scss";
 
 // Portafolio
-@import "components/portfolio/items.scss";
-@import "components/portfolio/head.scss";
+@import "./components/portfolio/items.scss";
+@import "./components/portfolio/head.scss";
 @import "./components/modal.scss";
 
 // Blog
-@import "components/blog/entries-list.scss";
-@import "components/blog/post.scss";
+@import "./components/blog/entries-list.scss";
+@import "./components/blog/post.scss";
 
 // Animations
-@import "components/mapeo-circle.scss";
-@import "components/appear.scss";
-@import "components/spinner.scss";
+@import "./components/mapeo-circle.scss";
+@import "./components/appear.scss";
+@import "./components/spinner.scss";
+
+// Error pages
+@import "./components/404.scss";
 
 // Librerias externas
 @import "./lib/calendly.scss";

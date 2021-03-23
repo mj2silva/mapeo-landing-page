@@ -7,11 +7,11 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps } : AppProps) : ReactElement<AppProps> {
-  return (
+  return (Component.displayName !== 'Error 404') ? (
     <Layout>
       <Component {...pageProps} />
     </Layout>
-  );
+  ) : <Component {...pageProps} />;
 }
 
 export default MyApp;
