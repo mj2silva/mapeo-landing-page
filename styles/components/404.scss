@@ -8,11 +8,11 @@
   background-image:
     url("/img/slider-izquierda.png"),
     url("/img/circulo-lineas-arriba.png"),
-    url("/img/derecha-slider.png")
+    url("/img/figuras-404.png")
     ;
   background-repeat: no-repeat;
   background-position: left bottom, right top, right bottom;
-  background-size: 12%, 15%, 18%;
+  background-size: 12%, 15%, 25%;
   &__message {
     width: 50%;
     min-height: 50vh;
@@ -22,6 +22,17 @@
     font-family: $gilroyBold;
     font-size: 3.5rem;
     margin: .5rem 0;
+    position: relative;
+    &::before {
+      content: '';
+      width: 9rem;
+      height: 100%;
+      position: absolute;
+      background-repeat: repeat-x;
+      background-image: url("/img/equis.png");
+      background-size: contain;
+      left: -10rem;
+    }
   }
   &__description {
     font-family: $gilroy;

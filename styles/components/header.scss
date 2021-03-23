@@ -174,7 +174,6 @@
     cursor: pointer;
     font-weight: 500;
     position: relative;
-    animation: appear ease .5s;
     padding: 1rem;
     font-size: 1.1rem;
     & button {
@@ -198,39 +197,40 @@
       }
     }
     @media screen and (min-width: $breakpoint-tablet) {
-    &--orange:hover, &--orange.navigation__item--active {
-        color: $orange;
+      &--orange:hover, &--orange.navigation__item--active {
+          color: $orange;
+      }
+      &--purple:hover , &--purple.navigation__item--active {
+        color: $softPurple
+      }
+      &--skyblue:hover, &--skyblue.navigation__item--active {
+        color: $skyblue;
+      }
+      &--yellow:hover, &--yellow.navigation__item--active {
+        color: $yellow;
+      }
+      &--violet:hover, &--violet.navigation__item--active {
+        color: $violet;
+      }
     }
-    &--purple:hover , &--purple.navigation__item--active {
-      color: $softPurple
+    @media screen and (max-width: $breakpoint-tablet) {
+      animation: appear ease .5s;
+      &--orange {
+          color: $orange;
+      }
+      &--purple {
+        color: $softPurple
+      }
+      &--skyblue {
+        color: $skyblue;
+      }
+      &--yellow {
+        color: $yellow;
+      }
+      &--violet {
+        color: $violet;
+      }
     }
-    &--skyblue:hover, &--skyblue.navigation__item--active {
-      color: $skyblue;
-    }
-    &--yellow:hover, &--yellow.navigation__item--active {
-      color: $yellow;
-    }
-    &--violet:hover, &--violet.navigation__item--active {
-      color: $violet;
-    }
-  }
-  @media screen and (max-width: $breakpoint-tablet) {
-    &--orange {
-        color: $orange;
-    }
-    &--purple {
-      color: $softPurple
-    }
-    &--skyblue {
-      color: $skyblue;
-    }
-    &--yellow {
-      color: $yellow;
-    }
-    &--violet {
-      color: $violet;
-    }
-  }
     &--active::before {
       content: '· ';
     }
