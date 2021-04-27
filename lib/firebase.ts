@@ -32,7 +32,7 @@ const getPortfolioItems = async (
   itemsCount : number = 0,
 ) : Promise<PortfolioElement[]> => {
   const firebasePortafolioItems : PortfolioElement[] = [];
-  const portafolioRef = firestore.collection('portafolio');
+  const portafolioRef = firestore.collection('portafolio').orderBy('orden', 'asc');
   const data = (itemsCount)
     ? await portafolioRef.limit(itemsCount).get()
     : await portafolioRef.get();
