@@ -1,6 +1,6 @@
 {
   "name": "mapeo-landing-page",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -20,6 +20,7 @@
     "next": "10.0.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-facebook-pixel": "^1.0.4",
     "react-modal": "^3.12.1",
     "react-visibility-sensor": "^5.1.1",
     "sass": "^1.32.7"
