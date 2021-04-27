@@ -1,6 +1,8 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { Dispatch, ReactElement, SetStateAction } from 'react';
+import {
+  Dispatch, ReactElement, SetStateAction, useEffect,
+} from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
 import AboutUs from '../components/AboutUs';
 import CallToAction from '../components/CallToAction';
@@ -8,6 +10,7 @@ import CustomerStories from '../components/CustomerStories';
 import Portfolio from '../components/Portfolio';
 import { PortfolioItemProps } from '../components/PortfolioItem';
 import Presentation from '../components/Presentation';
+import ReactPixel from '../components/ReactPixel';
 import ScheduleMeeting from '../components/ScheduleMeeting';
 import SolutionsMarketing from '../components/SolutionsMarketing';
 import SolutionsPersons from '../components/SolutionsPersons';
@@ -57,6 +60,14 @@ export default function Home(props : Props) : ReactElement {
     personsMapeoServices,
     staff,
   } = props;
+
+  useEffect(() => {
+    const initPixel = async () : Promise<void> => {
+      const pixel = await ReactPixel();
+      pixel.pageView();
+    };
+    initPixel();
+  }, []);
 
   return (
     <>

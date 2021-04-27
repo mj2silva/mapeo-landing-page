@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/storage';
+import 'firebase/analytics';
 import {
   CustomerStorie, MapeoService, MeetingInfo, PortfolioElement, PortfolioTag, StaffMember,
 } from './types';
@@ -22,6 +23,7 @@ if (!firebase.apps.length) {
 
 export const firestore = firebase.firestore();
 export const storage = firebase.storage();
+export const analitycs = firebase.analytics;
 
 /**
  * Obtiene los items del portafolio almacenados en el firestore de firebase
